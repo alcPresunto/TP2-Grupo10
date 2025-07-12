@@ -1,14 +1,15 @@
-package com.jogo.ActRaiser.modelos;
+package com.jogo.ActRaiser.modelos.objetos.moveis.personagens;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.jogo.ActRaiser.modelos.objetos.moveis.Movel;
 
-public abstract class Entidade extends Movel {
+public abstract class Personagem extends Movel {
     protected final int pontosVida, pontosMagia, pontosDano;
 
-    public Entidade(float posicaoX, float posicaoY, float velocidadeX, float velocidadeY, Texture texture,
-            Rectangle hitbox, int pontosVida, int pontosMagia, int pontosDano) {
-        super(posicaoX, posicaoY, velocidadeX, velocidadeY, texture, hitbox);
+    public Personagem(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int pontosVida,
+            int pontosMagia, int pontosDano) {
+        super(posicaoX, posicaoY, texture, hitbox, velocidade);
         this.pontosVida = pontosVida;
         this.pontosMagia = pontosMagia;
         this.pontosDano = pontosDano;

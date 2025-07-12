@@ -8,9 +8,11 @@ public interface Builder {
 
     public void setPosicaoY(float posicaoY);
 
-    public void setVelocidadeX(float velocidadeX);
+    public void setTexture(Texture texture);
 
-    public void setVelocidadeY(float velocidadeY);
+    public void setHitbox(Rectangle hitbox);
+
+    public void setVelocidade(float velocidade);
 
     public void setPontosVida(int pontosVida);
 
@@ -18,7 +20,4 @@ public interface Builder {
 
     public void setPontosDano(int pontosDano);
 
-    public void setTexture(Texture texture);
-
-    public void setHitbox(Rectangle hitbox);
 }

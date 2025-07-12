@@ -9,8 +9,7 @@ public class Director {
     public void constructorPlayer(Builder builder){
         builder.setPosicaoX(300);
         builder.setPosicaoY(400);
-        builder.setVelocidadeX(5);
-        builder.setVelocidadeY(5);
+        builder.setVelocidade(5);
         builder.setTexture(new Texture(Gdx.files.internal("assets/libgdx.png")));
         builder.setHitbox(new Rectangle(300, 400, 32, 32));
     }
@@ -18,8 +17,7 @@ public class Director {
     public void constructorMorcego(Builder builder){
         builder.setPosicaoX(600);
         builder.setPosicaoY(400);
-        builder.setVelocidadeX(2);
-        builder.setVelocidadeY(2);
+        builder.setVelocidade(2);
         builder.setTexture(new Texture(Gdx.files.internal("assets/libgdx.png")));
         builder.setHitbox(new Rectangle(600, 400, 32, 32));
     }
