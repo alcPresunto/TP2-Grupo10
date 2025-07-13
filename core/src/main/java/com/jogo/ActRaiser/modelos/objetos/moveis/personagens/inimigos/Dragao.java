@@ -3,13 +3,11 @@ package com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
-public class Morcego extends Inimigo {
+public class Dragao extends Inimigo{
 
-    public Morcego(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int pontosVida,
+    public Dragao(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int pontosVida,
             int pontosMagia, int pontosDano) {
         super(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano);
     }
-
-
-
+    
 }

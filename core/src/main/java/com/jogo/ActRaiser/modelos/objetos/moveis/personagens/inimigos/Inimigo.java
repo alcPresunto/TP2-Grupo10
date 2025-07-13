@@ -38,19 +38,16 @@ public class Inimigo extends Personagem {
 
     @Override
     public void adicionaPontosMagia(int pontosMagia) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'adicionaPontosMagia'");
     }
 
     @Override
     public void removePontosMagia(int pontosMagia) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'removePontosMagia'");
     }
 
     @Override
     public void adicionaPontosDano(int pontosDano) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'adicionaPontosDano'");
     }
 

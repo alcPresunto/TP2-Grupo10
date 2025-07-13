@@ -3,7 +3,7 @@ package com.jogo.ActRaiser.interfaces;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
-public interface Builder {
+public interface ObjetosBuilder {
     public void setPosicaoX(float posicaoX);
 
     public void setPosicaoY(float posicaoY);

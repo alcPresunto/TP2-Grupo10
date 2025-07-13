@@ -9,13 +9,11 @@ public class Player extends Personagem {
     public Player(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int pontosVida,
             int pontosMagia, int pontosDano) {
         super(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     public void mover() {
         // TODO Auto-generated method stub
-        System.out.println("TestePlayer");
     }
 
     @Override
