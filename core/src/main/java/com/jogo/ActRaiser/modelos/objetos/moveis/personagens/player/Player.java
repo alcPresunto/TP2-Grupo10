@@ -1,5 +1,7 @@
 package com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.Personagem;
@@ -13,7 +15,17 @@ public class Player extends Personagem {
 
     @Override
     public void mover() {
-        // TODO Auto-generated method stub
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            posicaoX += velocidade * Gdx.graphics.getDeltaTime();
+        } else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+            posicaoX -= velocidade * Gdx.graphics.getDeltaTime();
+        }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            posicaoY += velocidade * Gdx.graphics.getDeltaTime();
+        } else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            posicaoY -= velocidade * Gdx.graphics.getDeltaTime();
+        }
     }
 
     @Override

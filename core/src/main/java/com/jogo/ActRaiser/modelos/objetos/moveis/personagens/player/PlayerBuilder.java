@@ -54,4 +54,7 @@ public class PlayerBuilder implements ObjetosBuilder {
         return new Player(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano);
     }
 
+    @Override
+    public void setPlayer(Player player) {}
+
 }

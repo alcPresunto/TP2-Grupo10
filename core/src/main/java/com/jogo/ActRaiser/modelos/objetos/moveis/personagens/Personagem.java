@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.jogo.ActRaiser.modelos.objetos.moveis.Movel;
 
 public abstract class Personagem extends Movel {
-    protected final int pontosVida, pontosMagia, pontosDano;
+    protected int pontosVida, pontosMagia, pontosDano;
 
     public Personagem(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int pontosVida,
             int pontosMagia, int pontosDano) {
