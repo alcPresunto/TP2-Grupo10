@@ -3,12 +3,14 @@ package com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.jogo.ActRaiser.interfaces.ObjetosBuilder;
+import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
 
 public class DragaoBuilder implements ObjetosBuilder {
-    private float posicaoX, posicaoY, velocidade;
-    private int pontosVida, pontosMagia, pontosDano;
-    private Texture texture;
-    private Rectangle hitbox;
+    protected float posicaoX, posicaoY, velocidade;
+    protected int pontosVida, pontosMagia, pontosDano;
+    protected Texture texture;
+    protected Rectangle hitbox;
+    protected Player player;
 
     @Override
     public void setPosicaoX(float posicaoX) {
@@ -50,7 +52,13 @@ public class DragaoBuilder implements ObjetosBuilder {
         this.hitbox = hitbox;
     }
 
-    public Dragao buildDragao() {
-        return new Dragao(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano);
+    @Override
+    public void setPlayer(Player player) {
+        this.player = player;
     }
+
+    public Dragao buildDragao() {
+        return new Dragao(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, player);
+    }
+
 }

@@ -6,13 +6,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.jogo.ActRaiser.GameRunner;
 
-public class MainMenuScreen implements Screen {
+public class StartMenu implements Screen {
     private final GameRunner gameRunner;
     private Texture botaoJogar;
 
     private float botaoX, botaoY, botaoWidth, botaoHeight;
 
-    public MainMenuScreen(GameRunner gameRunner) {
+    public StartMenu(GameRunner gameRunner) {
         this.gameRunner = gameRunner;
         botaoJogar = new Texture(Gdx.files.internal("assets/botaoJogar.png"));
         gameRunner.font.getData().setScale(1.5f);
@@ -39,7 +39,7 @@ public class MainMenuScreen implements Screen {
                 && mouseY <= botaoY + botaoHeight;
 
         if (Gdx.input.justTouched() && isHovering) {
-            gameRunner.setScreen(new MainGameScreen(gameRunner));
+            gameRunner.setScreen(new PrimeiraFase(gameRunner));
         }
 
         gameRunner.batch.begin();

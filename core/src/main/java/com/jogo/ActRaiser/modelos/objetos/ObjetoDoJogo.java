@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 
 public abstract class ObjetoDoJogo {
-    private final float posicaoX, posicaoY;
-    private final Texture texture;
-    private final Rectangle hitbox;
+    protected final float posicaoX, posicaoY;
+    protected final Texture texture;
+    protected final Rectangle hitbox;
 
     public ObjetoDoJogo(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox) {
         this.posicaoX = posicaoX;

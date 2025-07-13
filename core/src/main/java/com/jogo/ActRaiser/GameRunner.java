@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.jogo.ActRaiser.screens.MainMenuScreen;
+import com.jogo.ActRaiser.screens.StartMenu;
 
 public class GameRunner extends Game {
     public SpriteBatch batch;
@@ -21,7 +21,7 @@ public class GameRunner extends Game {
         font.setUseIntegerPositions(false);
         font.getData().setScale(viewport.getWorldHeight() / Gdx.graphics.getHeight());
 
-        this.setScreen(new MainMenuScreen(this));
+        this.setScreen(new StartMenu(this));
     }
 
     @Override

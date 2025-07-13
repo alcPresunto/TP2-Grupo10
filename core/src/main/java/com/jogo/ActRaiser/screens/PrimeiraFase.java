@@ -5,10 +5,10 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.jogo.ActRaiser.GameRunner;
 
-public class MainGameScreen implements Screen {
+public class PrimeiraFase implements Screen {
     private final GameRunner gameRunner;
 
-    public MainGameScreen(GameRunner gameRunner) {
+    public PrimeiraFase(GameRunner gameRunner) {
         this.gameRunner = gameRunner;
     }
 
