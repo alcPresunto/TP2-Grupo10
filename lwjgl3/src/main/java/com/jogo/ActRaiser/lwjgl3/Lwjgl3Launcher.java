@@ -19,7 +19,7 @@ public class Lwjgl3Launcher {
         configuration.setTitle("ActRaiser - Construção de Cidade");
         configuration.useVsync(true);
         configuration.setForegroundFPS(Lwjgl3ApplicationConfiguration.getDisplayMode().refreshRate + 1);
-        configuration.setWindowedMode(1280, 720);
+        configuration.setWindowedMode(950, 540);
         configuration.setWindowIcon("libgdx128.png", "libgdx64.png", "libgdx32.png", "libgdx16.png");
         configuration.setResizable(false);
         return configuration;

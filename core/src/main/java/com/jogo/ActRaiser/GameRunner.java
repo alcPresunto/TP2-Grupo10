@@ -16,7 +16,7 @@ public class GameRunner extends Game {
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
-        viewport = new FitViewport(8, 5);
+        viewport = new FitViewport(4, 3);
 
         font.setUseIntegerPositions(false);
         font.getData().setScale(viewport.getWorldHeight() / Gdx.graphics.getHeight());
