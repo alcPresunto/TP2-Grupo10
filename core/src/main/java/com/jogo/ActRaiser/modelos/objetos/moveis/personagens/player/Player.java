@@ -4,12 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.jogo.ActRaiser.Director;
+import com.jogo.ActRaiser.modelos.objetos.moveis.Projetil;
+import com.jogo.ActRaiser.modelos.objetos.moveis.ProjetilBuilder;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.Personagem;
 
 public class Player extends Personagem {
 
     private float direcaoX = 0;
-    private float direcaoY = 1; // Começa olhando pra cima
+    private float direcaoY = 1;
+    private float tempoEntreTiros = 0.5f;
+    private float timerTiro = 0f;
 
     public Player(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade,
             int pontosVida, int pontosMagia, int pontosDano) {
@@ -22,6 +27,12 @@ public class Player extends Personagem {
         atualizarDirecao(input[0], input[1]);
         atualizarPosicao(input[0], input[1]);
         atualizarHitbox();
+
+        timerTiro += Gdx.graphics.getDeltaTime();
+        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && timerTiro >= tempoEntreTiros) {
+            atirar();
+            timerTiro = 0;
+        }
     }
 
     private float[] capturarEntrada() {
@@ -56,6 +67,14 @@ public class Player extends Personagem {
 
     private void atualizarHitbox() {
         hitbox.setPosition(posicaoX, posicaoY);
+    }
+
+    private void atirar() {
+        ProjetilBuilder projetilBuilder = new ProjetilBuilder();
+        Director director = new Director();
+        director.constructorProjetil(projetilBuilder, this);
+        Projetil projetil = projetilBuilder.buildProjetil();
+
     }
 
     // Getters
