@@ -3,14 +3,13 @@ package com.jogo.ActRaiser.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.jogo.ActRaiser.GameRunner;
 import com.jogo.ActRaiser.modelos.mapas.MapaPrimeiraFase;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.Game;
 
 public class PrimeiraFase implements Screen {
     private final GameRunner gameRunner;
@@ -30,7 +29,8 @@ public class PrimeiraFase implements Screen {
                 new Rectangle(50, 50, 50, 50), 50, 200, 100, 10);
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        // Zoom de 2x: diminui a viewport pela metade
+        camera.setToOrtho(false, Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
 
         cameraFoco = new Vector2();
     }
@@ -39,10 +39,22 @@ public class PrimeiraFase implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        // cameraFoco.set(player.getPosX(), player.getPosY());
-        // camera.position.set(cameraFoco, 0);camera.update();
+
+        // Atualiza a posição da câmera para o centro do player
+        camera.position.set(
+                player.getPosicaoX() + player.getTexture().getWidth() / 2f,
+                player.getPosicaoY() + player.getTexture().getHeight() / 2f,
+                0
+        );
+        camera.update();
+
+        // Renderiza o mapa com a câmera atualizada
         mapaPrimeiraFase.render(camera);
+        player.mover();
+        // Garante que o batch use a matriz de projeção da câmera
+        gameRunner.batch.setProjectionMatrix(camera.combined);
         gameRunner.batch.begin();
+        gameRunner.batch.draw(player.getTexture(), player.getPosicaoX(), player.getPosicaoY());
         gameRunner.batch.end();
     }
 
