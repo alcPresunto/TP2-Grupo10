@@ -31,30 +31,4 @@ public class Player extends Personagem {
         // Atualiza hitbox com nova posição
         hitbox.setPosition(posicaoX, posicaoY);
     }
-
-    @Override
-    public void adicionaPontosVida(int pontosVida) {
-        this.pontosVida += pontosVida;
-    }
-
-    @Override
-    public void removePontosVida(int pontosDano) {
-        this.pontosVida -= pontosDano;
-    }
-
-    @Override
-    public void adicionaPontosMagia(int pontosMagia) {
-        this.pontosMagia += pontosMagia;
-    }
-
-    @Override
-    public void removePontosMagia(int pontosMagia) {
-        this.pontosMagia -= pontosMagia;
-    }
-
-    @Override
-    public void adicionaPontosDano(int pontosDano) {
-        this.pontosDano += pontosDano;
-    }
-
 }

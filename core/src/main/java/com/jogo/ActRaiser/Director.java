@@ -13,6 +13,9 @@ public class Director {
         builder.setVelocidade(175);
         builder.setTexture(new Texture(Gdx.files.internal("assets/libgdx.png")));
         builder.setHitbox(new Rectangle(0, 0, 32, 32));
+        builder.setPontosVida(5);
+        builder.setPontosDano(1);
+        builder.setPontosMagia(0);
     }
 
     public void constructorMorcego(ObjetosBuilder builder, Player player) {

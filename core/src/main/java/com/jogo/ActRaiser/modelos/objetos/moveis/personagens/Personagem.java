@@ -40,13 +40,23 @@ public abstract class Personagem extends Movel {
         this.pontosDano = pontosDano;
     }
 
-    public abstract void adicionaPontosVida(int pontosVida);
+    public void adicionaPontosVida(int pontosVida) {
+        this.pontosVida += pontosVida;
+    }
 
-    public abstract void removePontosVida(int pontosDano);
+    public void removePontosVida(int pontosDano) {
+        this.pontosVida -= pontosDano;
+    }
 
-    public abstract void adicionaPontosMagia(int pontosMagia);
+    public void adicionaPontosMagia(int pontosMagia) {
+        this.pontosMagia += pontosMagia;
+    }
 
-    public abstract void removePontosMagia(int pontosMagia);
+    public void removePontosMagia(int pontosMagia) {
+        this.pontosMagia -= pontosMagia;
+    }
 
-    public abstract void adicionaPontosDano(int pontosDano);
+    public void adicionaPontosDano(int pontosDano) {
+        this.pontosDano += pontosDano;
+    }
 }

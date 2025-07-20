@@ -9,7 +9,6 @@ public class Diabinho extends Inimigo {
     public Diabinho(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int pontosVida,
             int pontosMagia, int pontosDano, Player player) {
         super(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, player);
-        // TODO Auto-generated constructor stub
     }
 
 }

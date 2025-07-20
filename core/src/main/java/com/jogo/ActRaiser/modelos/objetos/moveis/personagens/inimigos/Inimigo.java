@@ -32,31 +32,4 @@ public class Inimigo extends Personagem {
         }
     }
 
-    @Override
-    public void adicionaPontosVida(int pontosVida) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionaPontosVida'");
-    }
-
-    @Override
-    public void removePontosVida(int pontosDano) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removePontosVida'");
-    }
-
-    @Override
-    public void adicionaPontosMagia(int pontosMagia) {
-        throw new UnsupportedOperationException("Unimplemented method 'adicionaPontosMagia'");
-    }
-
-    @Override
-    public void removePontosMagia(int pontosMagia) {
-        throw new UnsupportedOperationException("Unimplemented method 'removePontosMagia'");
-    }
-
-    @Override
-    public void adicionaPontosDano(int pontosDano) {
-        throw new UnsupportedOperationException("Unimplemented method 'adicionaPontosDano'");
-    }
-
 }
