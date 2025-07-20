@@ -61,4 +61,8 @@ public class DiabinhoBuilder implements ObjetosBuilder {
         return new Diabinho(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano,
                 player);
     }
+
+    @Override
+    public void setDirecao(float direcaoX, float direcaoY) {
+    }
 }

@@ -94,11 +94,11 @@ public class ControladorDeMoveis {
     }
 
     // public void colisaoInimigo(Inimigo inimigo, ObjetoDoJogo objeto){
-    //     if (inimigo != objeto && inimigo.getHitbox().overlaps(objeto.getHitbox())) {
-            
-    //         if (objeto instanceof ) {
-                
-    //         }
-    //     }
+    // if (inimigo != objeto && inimigo.getHitbox().overlaps(objeto.getHitbox())) {
+
+    // if (objeto instanceof ) {
+
+    // }
+    // }
     // }
 }

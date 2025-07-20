@@ -44,4 +44,18 @@ public class Director {
         builder.setHitbox(new Rectangle(0, 0, 0, 0));
         builder.setPlayer(player);
     }
+
+    public void constructorProjetil(ObjetosBuilder objetosBuilder, Player player) {
+        float posicaoInicialX = player.getCentroX();
+        float posicaoInicialY = player.getCentroY();
+
+        objetosBuilder.setPosicaoX(posicaoInicialX);
+        objetosBuilder.setPosicaoY(posicaoInicialY);
+        objetosBuilder.setVelocidade(400);
+        objetosBuilder.setTexture(new Texture(Gdx.files.internal("assets/projetil.png")));
+        objetosBuilder.setHitbox(new Rectangle(posicaoInicialX, posicaoInicialY, 16, 16));
+        objetosBuilder.setPlayer(player);
+        objetosBuilder.setDirecao(player.getDirecaoX(), player.getDirecaoY());
+    }
+
 }

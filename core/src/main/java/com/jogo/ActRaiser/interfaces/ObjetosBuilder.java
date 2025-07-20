@@ -22,5 +22,6 @@ public interface ObjetosBuilder {
     public void setPontosDano(int pontosDano);
 
     public void setPlayer(Player player);
-    
+
+    public void setDirecao(float direcaoX, float direcaoY);
 }

@@ -62,4 +62,8 @@ public class MorcegoBuilder implements ObjetosBuilder {
                 player);
     }
 
+    @Override
+    public void setDirecao(float direcaoX, float direcaoY) {
+    }
+
 }

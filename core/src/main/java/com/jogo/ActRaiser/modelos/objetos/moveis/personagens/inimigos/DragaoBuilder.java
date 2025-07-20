@@ -61,4 +61,8 @@ public class DragaoBuilder implements ObjetosBuilder {
         return new Dragao(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, player);
     }
 
+    @Override
+    public void setDirecao(float direcaoX, float direcaoY) {
+    }
+
 }
