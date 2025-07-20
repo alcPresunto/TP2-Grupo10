@@ -10,7 +10,7 @@ public class MapaPrimeiraFase {
     private OrthogonalTiledMapRenderer renderer;
 
     public MapaPrimeiraFase() {
-        mapa = new TmxMapLoader().load("Mapa1.tmx"); // nome do seu arquivo .tmx
+        mapa = new TmxMapLoader().load("Mapa1.tmx"); 
         renderer = new OrthogonalTiledMapRenderer(mapa);
     }
 
