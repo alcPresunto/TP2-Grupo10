@@ -7,7 +7,8 @@ import com.jogo.ActRaiser.modelos.objetos.moveis.Movel;
 public abstract class Personagem extends Movel {
     protected int pontosVida, pontosMagia, pontosDano;
 
-    public Personagem(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int pontosVida,
+    public Personagem(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade,
+            int pontosVida,
             int pontosMagia, int pontosDano) {
         super(posicaoX, posicaoY, texture, hitbox, velocidade);
         this.pontosVida = pontosVida;
@@ -25,6 +26,18 @@ public abstract class Personagem extends Movel {
 
     public int getPontosDano() {
         return pontosDano;
+    }
+
+    public void setPontosVida(int pontosVida) {
+        this.pontosVida = pontosVida;
+    }
+
+    public void setPontosMagia(int pontosMagia) {
+        this.pontosMagia = pontosMagia;
+    }
+
+    public void setPontosDano(int pontosDano) {
+        this.pontosDano = pontosDano;
     }
 
     public abstract void adicionaPontosVida(int pontosVida);

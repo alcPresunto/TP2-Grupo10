@@ -17,6 +17,8 @@ public class Inimigo extends Personagem {
 
     @Override
     public void mover() {
+        hitbox.x = posicaoX;
+        hitbox.y = posicaoY;
         if (posicaoX < player.getPosicaoX()) {
             posicaoX += velocidade * Gdx.graphics.getDeltaTime();
         } else if (posicaoX > player.getPosicaoX()) {
@@ -28,12 +30,6 @@ public class Inimigo extends Personagem {
         } else if (getPosicaoY() > player.getPosicaoY()) {
             this.posicaoY -= velocidade * Gdx.graphics.getDeltaTime();
         }
-    }
-
-    @Override
-    public void colisao() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'colisao'");
     }
 
     @Override

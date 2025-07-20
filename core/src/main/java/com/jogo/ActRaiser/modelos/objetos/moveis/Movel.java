@@ -12,11 +12,13 @@ public abstract class Movel extends ObjetoDoJogo {
         this.velocidade = velocidade;
     }
 
+    public void setVelocidade(float velocidade) {
+        this.velocidade = velocidade;
+    }
+
     public float getVelocidade() {
         return velocidade;
     }
 
     public abstract void mover();
-
-    public abstract void colisao();
 }

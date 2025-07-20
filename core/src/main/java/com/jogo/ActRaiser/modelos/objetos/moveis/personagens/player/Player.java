@@ -15,6 +15,7 @@ public class Player extends Personagem {
 
     @Override
     public void mover() {
+        // Movimento do jogador
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             posicaoX += velocidade * Gdx.graphics.getDeltaTime();
         } else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
@@ -26,42 +27,34 @@ public class Player extends Personagem {
         } else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
             posicaoY -= velocidade * Gdx.graphics.getDeltaTime();
         }
-    }
 
-    @Override
-    public void colisao() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'colisao'");
+        // Atualiza hitbox com nova posição
+        hitbox.setPosition(posicaoX, posicaoY);
     }
 
     @Override
     public void adicionaPontosVida(int pontosVida) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionaPontosVida'");
+        this.pontosVida += pontosVida;
     }
 
     @Override
     public void removePontosVida(int pontosDano) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removePontosVida'");
+        this.pontosVida -= pontosDano;
     }
 
     @Override
     public void adicionaPontosMagia(int pontosMagia) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionaPontosMagia'");
+        this.pontosMagia += pontosMagia;
     }
 
     @Override
     public void removePontosMagia(int pontosMagia) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removePontosMagia'");
+        this.pontosMagia -= pontosMagia;
     }
 
     @Override
     public void adicionaPontosDano(int pontosDano) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adicionaPontosDano'");
+        this.pontosDano += pontosDano;
     }
 
 }
