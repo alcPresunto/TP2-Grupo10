@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.jogo.ActRaiser.Director;
 import com.jogo.ActRaiser.animacoes.AnimacaoPlayer;
@@ -43,9 +44,10 @@ public class Player extends Personagem {
     }
 
     @Override
-    public void desenha(SpriteBatch batch){
+    public void desenha(SpriteBatch batch) {
         animacaoPlayer.atualizar(Gdx.graphics.getDeltaTime());
         batch.draw(animacaoPlayer.getFrame(), posicaoX, posicaoY);
+
     }
 
     private float[] capturarEntrada() {
@@ -79,7 +81,18 @@ public class Player extends Personagem {
     }
 
     private void atualizarHitbox() {
-        hitbox.setPosition(posicaoX, posicaoY);
+        TextureRegion frame = animacaoPlayer.getFrame();
+        float frameWidth = frame.getRegionWidth();
+        float frameHeight = frame.getRegionHeight();
+
+        // Usa a mesma posição usada no batch.draw()
+        float frameX = posicaoX;
+        float frameY = posicaoY;
+
+        float hitboxX = frameX + (frameWidth - hitbox.getWidth()) / 2f;
+        float hitboxY = frameY + (frameHeight - hitbox.getHeight()) / 2f;
+
+        hitbox.setPosition(hitboxX, hitboxY);
     }
 
     private void atirar() {
@@ -98,7 +111,6 @@ public class Player extends Personagem {
             projetil.mover();
             if (projetil.estaAtivo()) {
                 projetil.desenha(batch);
-                System.out.println("HEHEHEHE");
             } else {
                 projeteisRemovidos.add(projetil);
             }
@@ -126,6 +138,10 @@ public class Player extends Personagem {
 
     public ArrayList<Projetil> getProjeteis() {
         return projeteis;
+    }
+
+    public TextureRegion getFrameAtual() {
+        return animacaoPlayer.getFrame();
     }
 
 }

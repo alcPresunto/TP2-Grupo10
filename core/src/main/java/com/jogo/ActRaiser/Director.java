@@ -12,7 +12,7 @@ public class Director {
         builder.setPosicaoY(200);
         builder.setVelocidade(175);
         builder.setTexture(new Texture(Gdx.files.internal("assets/angel.png")));
-        builder.setHitbox(new Rectangle(0, 0, 16, 16));
+        builder.setHitbox(new Rectangle(0, 0, 20, 20));
         builder.setPontosVida(5);
         builder.setPontosDano(1);
         builder.setPontosMagia(0);
@@ -35,8 +35,8 @@ public class Director {
         builder.setPosicaoX(300);
         builder.setPosicaoY(50);
         builder.setVelocidade(125);
-        builder.setTexture(new Texture(Gdx.files.internal("assets/libgdx.png")));
-        builder.setHitbox(new Rectangle(0, 0, 32, 32));
+        builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
+        builder.setHitbox(new Rectangle(300, 50, 32, 32));
         builder.setPlayer(player);
     }
 
@@ -44,7 +44,7 @@ public class Director {
         builder.setPosicaoX(0);
         builder.setPosicaoY(0);
         builder.setVelocidade(100);
-        builder.setTexture(new Texture(Gdx.files.internal("assets/libgdx.png")));
+        builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
         builder.setHitbox(new Rectangle(0, 0, 32, 32));
         builder.setPlayer(player);
     }
@@ -53,7 +53,7 @@ public class Director {
         builder.setPosicaoX(0);
         builder.setPosicaoY(0);
         builder.setVelocidade(0);
-        builder.setTexture(new Texture(Gdx.files.internal("assets/libgdx.png")));
+        builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
         builder.setHitbox(new Rectangle(0, 0, 0, 0));
         builder.setPlayer(player);
     }

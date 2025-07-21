@@ -7,6 +7,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.jogo.ActRaiser.GameRunner;
 import com.jogo.ActRaiser.modelos.mapas.MapaPrimeiraFase;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.Personagem;
@@ -31,6 +33,8 @@ public class PrimeiraFase implements Screen {
     private ArrayList<Personagem> inimigos;
     private Player player;
 
+    ShapeRenderer shapeRenderer = new ShapeRenderer();
+
     public PrimeiraFase(GameRunner gameRunner) {
         this.gameRunner = gameRunner;
     }
@@ -48,31 +52,31 @@ public class PrimeiraFase implements Screen {
 
     }
 
-    private void verificaSpawnMorcego(float delta){
+    private void verificaSpawnMorcego(float delta) {
         float intervaloSpawnMorcego = 5f;
         tempoAcumuladoMorcego += delta;
 
         if (tempoAcumuladoMorcego >= intervaloSpawnMorcego) {
-    
+
             Morcego novoInimigo = criadorDePersonagens.criarMorcego(player);
             inimigos.add(novoInimigo);
             personagens.add(novoInimigo); // também adiciona na lista geral para renderizar
-    
+
             tempoAcumuladoMorcego = 0f;
         }
-        
+
     }
-    
-    private void verificaSpawnDragao(float delta){
+
+    private void verificaSpawnDragao(float delta) {
         float intervaloSpawnDragao = 7f;
         tempoAcumuladoDragao += delta;
 
         if (tempoAcumuladoDragao >= intervaloSpawnDragao) {
-    
+
             Dragao novoInimigo = criadorDePersonagens.criarDragao(player);
             inimigos.add(novoInimigo);
             personagens.add(novoInimigo); // também adiciona na lista geral para renderizar
-    
+
             tempoAcumuladoDragao = 0f;
         }
     }
@@ -87,10 +91,12 @@ public class PrimeiraFase implements Screen {
     }
 
     private void atualizaCamera() {
+        TextureRegion frame = player.getFrameAtual(); // crie esse getter
         camera.position.set(
-                player.getPosicaoX() + player.getTexture().getWidth() / 2f,
-                player.getPosicaoY() + player.getTexture().getHeight() / 2f,
+                player.getPosicaoX() + frame.getRegionWidth() / 2f,
+                player.getPosicaoY() + frame.getRegionHeight() / 2f,
                 0);
+
         camera.update();
     }
 
@@ -113,12 +119,12 @@ public class PrimeiraFase implements Screen {
         player = criadorDePersonagens.criarPlayer();
         personagens.add(player);
     }
-    
+
     private void limpaTela() {
         Gdx.gl.glClearColor(0, 0, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
-    
+
     private void atualizaColisoes() {
         for (Personagem personagem : personagens) {
             if (personagem != player) {
@@ -126,12 +132,12 @@ public class PrimeiraFase implements Screen {
             }
         }
     }
-    
+
     @Override
     public void render(float delta) {
         limpaTela();
         atualizaCamera();
-        
+
         mapaPrimeiraFase.render(camera);
         verificaSpawnInimigo(delta);
         atualizaPersonagens();
@@ -142,6 +148,21 @@ public class PrimeiraFase implements Screen {
         desenhaPersonagens(gameRunner.batch);
         player.atualizarProjeteis(gameRunner.batch);
         gameRunner.batch.end();
+
+        // shapeRenderer.setProjectionMatrix(camera.combined);
+        // shapeRenderer.begin(ShapeRenderer.ShapeType.Line); // ou Filled pra preencher
+        // shapeRenderer.setColor(Color.RED); // ou outra cor
+
+        // // Suponha que 'hitbox' é o Rectangle do seu Player
+        // shapeRenderer.rect(player.getHitbox().getX(), player.getHitbox().getY(), player.getHitbox().getWidth(),
+        //         player.getHitbox().getHeight());
+        // for (Personagem inimigo : inimigos) {
+        //     shapeRenderer.rect(inimigo.getHitbox().getX(), inimigo.getHitbox().getY(), inimigo.getHitbox().getWidth(),
+        //             inimigo.getHitbox().getHeight());
+        // }
+
+        // shapeRenderer.end();
+
     }
 
     @Override

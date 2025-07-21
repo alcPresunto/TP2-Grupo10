@@ -24,4 +24,5 @@ public interface ObjetosBuilder {
     public void setPlayer(Player player);
 
     public void setDirecao(float direcaoX, float direcaoY);
+
 }

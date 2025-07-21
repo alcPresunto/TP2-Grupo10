@@ -2,6 +2,7 @@ package com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.jogo.ActRaiser.animacoes.AnimacaoInimigo;
 import com.jogo.ActRaiser.interfaces.ObjetosBuilder;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
 
@@ -58,7 +59,8 @@ public class DragaoBuilder implements ObjetosBuilder {
     }
 
     public Dragao buildDragao() {
-        return new Dragao(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, player);
+        return new Dragao(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, player,
+                new AnimacaoInimigo(texture, 7, 4, 1, 2, 0.1f));
     }
 
     @Override

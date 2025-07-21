@@ -2,6 +2,7 @@ package com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.jogo.ActRaiser.animacoes.AnimacaoInimigo;
 import com.jogo.ActRaiser.interfaces.ObjetosBuilder;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
 
@@ -59,7 +60,7 @@ public class DiabinhoBuilder implements ObjetosBuilder {
 
     public Diabinho buildDiabinho() {
         return new Diabinho(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano,
-                player);
+                player, new AnimacaoInimigo(texture, 10, 4, 0, 2, 0.1f));
     }
 
     @Override

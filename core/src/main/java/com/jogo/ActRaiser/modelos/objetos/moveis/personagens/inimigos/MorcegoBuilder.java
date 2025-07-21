@@ -2,6 +2,7 @@ package com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
+import com.jogo.ActRaiser.animacoes.AnimacaoInimigo;
 import com.jogo.ActRaiser.interfaces.ObjetosBuilder;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
 
@@ -58,8 +59,8 @@ public class MorcegoBuilder implements ObjetosBuilder {
     }
 
     public Morcego buildMorcego() {
-        return new Morcego(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano,
-                player);
+        return new Morcego(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, player,
+                new AnimacaoInimigo(texture, 5, 4, 3, 2, 0.1f));
     }
 
     @Override
