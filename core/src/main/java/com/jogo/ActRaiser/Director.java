@@ -26,7 +26,7 @@ public class Director {
         objetosBuilder.setPosicaoY(posicaoInicialY);
         objetosBuilder.setDirecao(player.getDirecaoX(), player.getDirecaoY());
         objetosBuilder.setVelocidade(400);
-        objetosBuilder.setTexture(new Texture(Gdx.files.internal("assets/angel.png")));
+        objetosBuilder.setTexture(new Texture(Gdx.files.internal("assets/projetil.png")));
         objetosBuilder.setHitbox(new Rectangle(posicaoInicialX, posicaoInicialY, 16, 16));
         objetosBuilder.setPlayer(player);
     }
