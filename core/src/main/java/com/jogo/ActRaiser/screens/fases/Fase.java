@@ -15,15 +15,17 @@ import com.jogo.ActRaiser.modelos.mapas.MapaBase;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.Personagem;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos.Inimigo;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
+import com.jogo.ActRaiser.screens.HUD;
+import com.jogo.ActRaiser.screens.TelaDerrota;
 import com.jogo.ActRaiser.logica.CriadorDePersonagens;
 import com.jogo.ActRaiser.logica.GerenciadorDeColisoes;
 
 public abstract class Fase implements Screen {
-
     protected final GameRunner gameRunner;
 
     protected MapaBase mapa;
     protected OrthographicCamera camera;
+    protected HUD hud;
 
     protected CriadorDePersonagens criadorDePersonagens;
     protected GerenciadorDeColisoes gerenciadorDeColisoes;
@@ -40,10 +42,12 @@ public abstract class Fase implements Screen {
 
     protected void inicializaBase() {
         mapa = criaMapa();
+        camera = new OrthographicCamera();
+        hud = new HUD();
+
         criadorDePersonagens = new CriadorDePersonagens();
         gerenciadorDeColisoes = new GerenciadorDeColisoes();
 
-        camera = new OrthographicCamera();
         personagens = new ArrayList<>();
         inimigos = new ArrayList<>();
 
@@ -61,6 +65,9 @@ public abstract class Fase implements Screen {
     }
 
     protected void atualizaCamera() {
+        if (player == null || camera == null)
+            return;
+
         float cameraX = calculaPosicaoCameraX();
         float cameraY = calculaPosicaoCameraY();
 
@@ -69,78 +76,99 @@ public abstract class Fase implements Screen {
     }
 
     protected float calculaPosicaoCameraX() {
-        TextureRegion frame = player.getFrameAtual();
-        float posicaoX = player.getPosicaoX() + frame.getRegionWidth() / 2f;
+        if (player == null || mapa == null)
+            return 0;
 
+        TextureRegion frame = player.getFrameAtual();
+        if (frame == null)
+            return 0;
+
+        float posicaoX = player.getPosicaoX() + frame.getRegionWidth() / 2f;
         float limiteMinimo = camera.viewportWidth / 2f;
         float limiteMaximo = mapa.getLarguraMapa() - limiteMinimo;
 
-        if (posicaoX < limiteMinimo)
-            return limiteMinimo;
-        if (posicaoX > limiteMaximo)
-            return limiteMaximo;
-        return posicaoX;
+        return Math.max(limiteMinimo, Math.min(posicaoX, limiteMaximo));
     }
 
     protected float calculaPosicaoCameraY() {
-        TextureRegion frame = player.getFrameAtual();
-        float posicaoY = player.getPosicaoY() + frame.getRegionHeight() / 2f;
+        if (player == null || mapa == null)
+            return 0;
 
+        TextureRegion frame = player.getFrameAtual();
+        if (frame == null)
+            return 0;
+
+        float posicaoY = player.getPosicaoY() + frame.getRegionHeight() / 2f;
         float limiteMinimo = camera.viewportHeight / 2f;
         float limiteMaximo = mapa.getAlturaMapa() - limiteMinimo;
 
-        if (posicaoY < limiteMinimo)
-            return limiteMinimo;
-        if (posicaoY > limiteMaximo)
-            return limiteMaximo;
-        return posicaoY;
+        return Math.max(limiteMinimo, Math.min(posicaoY, limiteMaximo));
     }
 
     protected void atualizaPersonagens() {
+        if (personagens == null)
+            return;
+
         for (Personagem personagem : personagens) {
-            personagem.atualiza();
-            limitarPosicaoNoMapa(personagem);
+            if (personagem != null) {
+                personagem.atualiza();
+                limitarPosicaoNoMapa(personagem);
+            }
         }
     }
 
+    protected void removerInimigosMortos() {
+        if (inimigos == null || personagens == null)
+            return;
+
+        inimigos.removeIf(inimigo -> inimigo == null || !inimigo.estaAtivo());
+        personagens.removeIf(personagem -> personagem instanceof Inimigo &&
+                (!((Inimigo) personagem).estaAtivo()));
+    }
+
     protected void limitarPosicaoNoMapa(Personagem personagem) {
+        if (personagem == null || mapa == null)
+            return;
+
         float posicaoX = personagem.getPosicaoX();
         float posicaoY = personagem.getPosicaoY();
+        float larguraPersonagem = personagem.getHitbox() != null ? personagem.getHitbox().getWidth() : 0;
+        float alturaPersonagem = personagem.getHitbox() != null ? personagem.getHitbox().getHeight() : 0;
 
-        float larguraMapa = mapa.getLarguraMapa();
-        float alturaMapa = mapa.getAlturaMapa();
+        if (larguraPersonagem <= 0 || alturaPersonagem <= 0)
+            return;
 
-        float larguraPersonagem = personagem.getHitbox().getWidth();
-        float alturaPersonagem = personagem.getHitbox().getHeight();
-
-        if (posicaoX < 0)
-            posicaoX = 0;
-        else if (posicaoX + larguraPersonagem > larguraMapa)
-            posicaoX = larguraMapa - larguraPersonagem;
-
-        if (posicaoY < 0)
-            posicaoY = 0;
-        else if (posicaoY + alturaPersonagem > alturaMapa)
-            posicaoY = alturaMapa - alturaPersonagem;
-
-        personagem.setPosicaoX(posicaoX);
-        personagem.setPosicaoY(posicaoY);
+        personagem.setPosicaoX(Math.max(0, Math.min(posicaoX, mapa.getLarguraMapa() - larguraPersonagem)));
+        personagem.setPosicaoY(Math.max(0, Math.min(posicaoY, mapa.getAlturaMapa() - alturaPersonagem)));
     }
 
     protected void atualizaColisoes() {
+        if (player == null || inimigos == null || gerenciadorDeColisoes == null)
+            return;
+
         for (Inimigo inimigo : inimigos) {
-            gerenciadorDeColisoes.verificarColisaoJogadorComObjeto(player, inimigo);
-            gerenciadorDeColisoes.verificarColisaoProjetilComInimigo(player, inimigo);
+            if (inimigo != null) {
+                gerenciadorDeColisoes.verificarColisaoJogadorComObjeto(player, inimigo);
+                gerenciadorDeColisoes.verificarColisaoProjetilComInimigo(player, inimigo);
+            }
         }
     }
 
     protected void desenhaPersonagens(SpriteBatch batch) {
+        if (personagens == null || batch == null)
+            return;
+
         for (Personagem personagem : personagens) {
-            personagem.desenha(batch);
+            if (personagem != null) {
+                personagem.desenha(batch);
+            }
         }
     }
 
     protected void desenhaHitboxes() {
+        if (shapeRenderer == null || camera == null || player == null || inimigos == null)
+            return;
+
         shapeRenderer.setProjectionMatrix(camera.combined);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
         shapeRenderer.setColor(Color.RED);
@@ -148,13 +176,18 @@ public abstract class Fase implements Screen {
         desenhaHitbox(player);
 
         for (Personagem inimigo : inimigos) {
-            desenhaHitbox(inimigo);
+            if (inimigo != null) {
+                desenhaHitbox(inimigo);
+            }
         }
 
         shapeRenderer.end();
     }
 
     private void desenhaHitbox(Personagem personagem) {
+        if (personagem == null || personagem.getHitbox() == null)
+            return;
+
         shapeRenderer.rect(
                 personagem.getHitbox().getX(),
                 personagem.getHitbox().getY(),
@@ -173,7 +206,9 @@ public abstract class Fase implements Screen {
         configuraCamera();
 
         player = criaPlayer();
-        personagens.add(player);
+        if (player != null && personagens != null) {
+            personagens.add(player);
+        }
     }
 
     @Override
@@ -181,24 +216,54 @@ public abstract class Fase implements Screen {
         limpaTela();
         atualizaCamera();
 
-        mapa.render(camera);
+        // Renderiza o jogo (com câmera normal)
+        if (mapa != null) {
+            mapa.render(camera);
+        }
 
         verificaSpawnInimigos(delta);
-
         atualizaPersonagens();
         atualizaColisoes();
+        removerInimigosMortos();
 
-        gameRunner.batch.setProjectionMatrix(camera.combined);
-        gameRunner.batch.begin();
+        if (player != null && player.getPontosVida() <= 0) {
+            gameRunner.setScreen(new TelaDerrota(gameRunner));
+            return;
+        }
 
-        desenhaPersonagens(gameRunner.batch);
+        // Renderização do mundo do jogo
+        if (gameRunner.batch != null) {
+            gameRunner.batch.setProjectionMatrix(camera.combined);
+            gameRunner.batch.begin();
+            desenhaPersonagens(gameRunner.batch);
+            if (player != null) {
+                player.atualizarProjeteis();
+                player.desenharProjeteis(gameRunner.batch);
+            }
+            gameRunner.batch.end();
+        }
 
-        player.atualizarProjeteis();
-        player.desenharProjeteis(gameRunner.batch);
-
-        gameRunner.batch.end();
+        // Renderização da HUD (com câmera fixa)
+        if (gameRunner.batch != null) {
+            gameRunner.batch.setProjectionMatrix(gameRunner.cameraHUD.combined);
+            gameRunner.batch.begin();
+            if (hud != null && player != null) {
+                hud.desenhar(gameRunner.batch, player);
+            }
+            gameRunner.batch.end();
+        }
 
         desenhaHitboxes();
+    }
+
+    @Override
+    public void dispose() {
+        if (hud != null)
+            hud.dispose();
+        if (mapa != null)
+            mapa.dispose();
+        if (shapeRenderer != null)
+            shapeRenderer.dispose();
     }
 
     @Override
@@ -215,11 +280,5 @@ public abstract class Fase implements Screen {
 
     @Override
     public void resize(int width, int height) {
-    }
-
-    @Override
-    public void dispose() {
-        mapa.dispose();
-        shapeRenderer.dispose();
     }
 }

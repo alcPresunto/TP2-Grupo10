@@ -2,25 +2,22 @@ package com.jogo.ActRaiser;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.jogo.ActRaiser.screens.StartMenu;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class GameRunner extends Game {
     public SpriteBatch batch;
     public BitmapFont font;
-    public FitViewport viewport;
+    public OrthographicCamera cameraHUD;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
         font = new BitmapFont();
-        viewport = new FitViewport(4, 3);
-
-        font.setUseIntegerPositions(false);
-        font.getData().setScale(viewport.getWorldHeight() / Gdx.graphics.getHeight());
-
+        cameraHUD = new OrthographicCamera();
+        cameraHUD.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         this.setScreen(new StartMenu(this));
     }
 
@@ -33,5 +30,14 @@ public class GameRunner extends Game {
     public void dispose() {
         batch.dispose();
         font.dispose();
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width, height);
+        cameraHUD.setToOrtho(false, width, height);
+        if (getScreen() != null) {
+            getScreen().resize(width, height);
+        }
     }
 }

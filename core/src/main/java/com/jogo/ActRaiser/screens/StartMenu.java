@@ -10,22 +10,19 @@ import com.jogo.ActRaiser.screens.fases.PrimeiraFase;
 public class StartMenu implements Screen {
     private final GameRunner gameRunner;
     private Texture botaoJogar;
-
+    private Texture botaoJogarHover;
     private float botaoX, botaoY, botaoWidth, botaoHeight;
 
     public StartMenu(GameRunner gameRunner) {
         this.gameRunner = gameRunner;
         botaoJogar = new Texture(Gdx.files.internal("assets/botaoJogar.png"));
+        botaoJogarHover = new Texture(Gdx.files.internal("assets/botaoJogarHover.png"));
         gameRunner.font.getData().setScale(1.5f);
 
         botaoWidth = botaoJogar.getWidth();
         botaoHeight = botaoJogar.getHeight();
         botaoX = (Gdx.graphics.getWidth() - botaoWidth) / 2;
         botaoY = (Gdx.graphics.getHeight() - botaoHeight) / 2;
-    }
-
-    @Override
-    public void show() {
     }
 
     @Override
@@ -36,16 +33,30 @@ public class StartMenu implements Screen {
         float mouseX = Gdx.input.getX();
         float mouseY = Gdx.graphics.getHeight() - Gdx.input.getY();
 
-        boolean isHovering = mouseX >= botaoX && mouseX <= botaoX + botaoWidth && mouseY >= botaoY
-                && mouseY <= botaoY + botaoHeight;
+        boolean isHovering = mouseX >= botaoX && mouseX <= botaoX + botaoWidth &&
+                mouseY >= botaoY && mouseY <= botaoY + botaoHeight;
 
         if (Gdx.input.justTouched() && isHovering) {
+            dispose();
             gameRunner.setScreen(new PrimeiraFase(gameRunner));
         }
 
         gameRunner.batch.begin();
-        gameRunner.batch.draw(botaoJogar, botaoX, botaoY);
+        Texture botaoAtual = isHovering ? botaoJogarHover : botaoJogar;
+        gameRunner.batch.draw(botaoAtual, botaoX, botaoY);
         gameRunner.batch.end();
+    }
+
+    @Override
+    public void dispose() {
+        if (botaoJogar != null)
+            botaoJogar.dispose();
+        if (botaoJogarHover != null)
+            botaoJogarHover.dispose();
+    }
+
+    @Override
+    public void show() {
     }
 
     @Override
@@ -63,10 +74,4 @@ public class StartMenu implements Screen {
     @Override
     public void hide() {
     }
-
-    @Override
-    public void dispose() {
-        botaoJogar.dispose();
-    }
-
 }

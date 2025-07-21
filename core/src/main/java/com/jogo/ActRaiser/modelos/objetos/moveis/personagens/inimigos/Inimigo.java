@@ -14,7 +14,7 @@ public class Inimigo extends Personagem {
     protected AnimacaoGenerica animacao;
 
     public Inimigo(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int vida,
-                   int magia, int dano, Player player, AnimacaoGenerica animacao) {
+            int magia, int dano, Player player, AnimacaoGenerica animacao) {
         super(posicaoX, posicaoY, texture, hitbox, velocidade, vida, magia, dano);
         this.player = player;
         this.animacao = animacao;
@@ -24,11 +24,15 @@ public class Inimigo extends Personagem {
     public void mover() {
         float delta = Gdx.graphics.getDeltaTime();
 
-        if (posicaoX < player.getPosicaoX()) posicaoX += velocidade * delta;
-        else if (posicaoX > player.getPosicaoX()) posicaoX -= velocidade * delta;
+        if (posicaoX < player.getPosicaoX())
+            posicaoX += velocidade * delta;
+        else if (posicaoX > player.getPosicaoX())
+            posicaoX -= velocidade * delta;
 
-        if (posicaoY < player.getPosicaoY()) posicaoY += velocidade * delta;
-        else if (posicaoY > player.getPosicaoY()) posicaoY -= velocidade * delta;
+        if (posicaoY < player.getPosicaoY())
+            posicaoY += velocidade * delta;
+        else if (posicaoY > player.getPosicaoY())
+            posicaoY -= velocidade * delta;
 
         atualizarHitbox();
         animacao.atualizar(delta);
@@ -49,5 +53,15 @@ public class Inimigo extends Personagem {
         float hitboxY = posicaoY + (frameHeight - hitbox.getHeight()) / 2f;
 
         hitbox.setPosition(hitboxX, hitboxY);
+    }
+
+    public boolean estaMorto() {
+        return getPontosVida() <= 0;
+    }
+
+    public void morrer() {
+        setAtivo(false);
+        System.out.println("Inimigo morreu!");
+        // TODO: Som, animação de explosão etc
     }
 }

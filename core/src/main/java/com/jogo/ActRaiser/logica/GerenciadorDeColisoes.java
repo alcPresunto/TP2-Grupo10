@@ -27,7 +27,11 @@ public class GerenciadorDeColisoes {
             if (projetil.estaAtivo() && projetil.getHitbox().overlaps(inimigo.getHitbox())) {
                 aplicarDanoDoProjetilNoInimigo(inimigo, jogador.getPontosDano());
                 desativarProjetil(projetil);
-                // Aqui poderia chamar um método para efeitos sonoros ou visuais
+
+                if (inimigo.estaMorto()) {
+                    inimigo.morrer();
+                    // jogador.adicionarPontuacao(100); // se quiser
+                }
             }
         }
     }

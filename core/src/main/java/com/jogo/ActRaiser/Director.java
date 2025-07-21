@@ -13,15 +13,15 @@ public class Director {
         builder.setVelocidade(150);
         builder.setTexture(new Texture(Gdx.files.internal("assets/angel.png")));
         builder.setHitbox(new Rectangle(0, 0, 20, 20));
-        builder.setPontosVida(5);
+        builder.setPontosVida(10);
         builder.setPontosDano(1);
         builder.setPontosMagia(0);
     }
-
+    
     public void constructorProjetil(ObjetosBuilder objetosBuilder, Player player) {
         float posicaoInicialX = player.getCentroX();
         float posicaoInicialY = player.getCentroY();
-
+        
         objetosBuilder.setPosicaoX(posicaoInicialX);
         objetosBuilder.setPosicaoY(posicaoInicialY);
         objetosBuilder.setDirecao(player.getDirecaoX(), player.getDirecaoY());
@@ -30,7 +30,7 @@ public class Director {
         objetosBuilder.setHitbox(new Rectangle(posicaoInicialX, posicaoInicialY, 16, 16));
         objetosBuilder.setPlayer(player);
     }
-
+    
     public void constructorMorcego(ObjetosBuilder builder, Player player) {
         builder.setPosicaoX(300);
         builder.setPosicaoY(50);
@@ -38,8 +38,11 @@ public class Director {
         builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
         builder.setHitbox(new Rectangle(300, 50, 32, 32));
         builder.setPlayer(player);
+        builder.setPontosVida(2);
+        builder.setPontosDano(1);
+        builder.setPontosMagia(20);
     }
-
+    
     public void constructorDragao(ObjetosBuilder builder, Player player) {
         builder.setPosicaoX(0);
         builder.setPosicaoY(0);
@@ -47,8 +50,11 @@ public class Director {
         builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
         builder.setHitbox(new Rectangle(0, 0, 32, 32));
         builder.setPlayer(player);
+        builder.setPontosVida(5);
+        builder.setPontosDano(2);
+        builder.setPontosMagia(50);
     }
-
+    
     public void constructorDiabinho(ObjetosBuilder builder, Player player) {
         builder.setPosicaoX(0);
         builder.setPosicaoY(0);
@@ -56,6 +62,9 @@ public class Director {
         builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
         builder.setHitbox(new Rectangle(0, 0, 0, 0));
         builder.setPlayer(player);
+        builder.setPontosVida(3);
+        builder.setPontosDano(3);
+        builder.setPontosMagia(30);
     }
 
 }
