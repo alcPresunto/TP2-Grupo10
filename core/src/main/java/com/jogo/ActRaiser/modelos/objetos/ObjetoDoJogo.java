@@ -1,6 +1,7 @@
 package com.jogo.ActRaiser.modelos.objetos;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public abstract class ObjetoDoJogo {
@@ -16,6 +17,9 @@ public abstract class ObjetoDoJogo {
         this.hitbox.x = posicaoX;
         this.hitbox.y = posicaoY;
     }
+
+    public abstract void desenha(SpriteBatch batch);
+    public abstract void atualiza();
 
     // Getters
     public float getPosicaoX() {

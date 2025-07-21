@@ -2,6 +2,7 @@ package com.jogo.ActRaiser.modelos.objetos.moveis;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Projetil extends Movel {
@@ -32,5 +33,15 @@ public class Projetil extends Movel {
 
     public void destruir() {
         ativo = false;
+    }
+
+    @Override
+    public void desenha(SpriteBatch batch) {
+        batch.draw(texture, posicaoX, posicaoY);
+    }
+
+    @Override
+    public void atualiza() {
+        mover();
     }
 }
