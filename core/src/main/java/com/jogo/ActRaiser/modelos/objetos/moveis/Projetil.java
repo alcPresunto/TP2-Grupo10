@@ -21,7 +21,8 @@ public class Projetil extends Movel {
         posicaoY += direcaoY * velocidade * Gdx.graphics.getDeltaTime();
         hitbox.setPosition(posicaoX, posicaoY);
 
-        if (posicaoX < -50 || posicaoX > Gdx.graphics.getWidth() || posicaoY < -50 || posicaoY > Gdx.graphics.getHeight()) {
+        if (posicaoX < -50 || posicaoX > Gdx.graphics.getWidth() || posicaoY < -50
+                || posicaoY > Gdx.graphics.getHeight()) {
             ativo = false;
         }
     }

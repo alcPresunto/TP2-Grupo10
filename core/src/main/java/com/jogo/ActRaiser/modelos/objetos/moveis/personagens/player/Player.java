@@ -8,11 +8,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.jogo.ActRaiser.Director;
+import com.jogo.ActRaiser.animacoes.AnimacaoPlayer;
 import com.jogo.ActRaiser.modelos.objetos.moveis.Projetil;
 import com.jogo.ActRaiser.modelos.objetos.moveis.ProjetilBuilder;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.Personagem;
 
 public class Player extends Personagem {
+    private AnimacaoPlayer animacaoPlayer;
 
     private float direcaoX = 0;
     private float direcaoY = 1;
@@ -23,6 +25,7 @@ public class Player extends Personagem {
     public Player(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade,
             int pontosVida, int pontosMagia, int pontosDano) {
         super(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano);
+        this.animacaoPlayer = new AnimacaoPlayer(texture);
     }
 
     @Override
@@ -37,6 +40,12 @@ public class Player extends Personagem {
             atirar();
             timerTiro = 0;
         }
+    }
+
+    @Override
+    public void desenha(SpriteBatch batch){
+        animacaoPlayer.atualizar(Gdx.graphics.getDeltaTime());
+        batch.draw(animacaoPlayer.getFrame(), posicaoX, posicaoY);
     }
 
     private float[] capturarEntrada() {

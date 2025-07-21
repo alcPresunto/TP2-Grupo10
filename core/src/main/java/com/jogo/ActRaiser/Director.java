@@ -11,8 +11,8 @@ public class Director {
         builder.setPosicaoX(100);
         builder.setPosicaoY(200);
         builder.setVelocidade(175);
-        builder.setTexture(new Texture(Gdx.files.internal("assets/libgdx.png")));
-        builder.setHitbox(new Rectangle(0, 0, 32, 32));
+        builder.setTexture(new Texture(Gdx.files.internal("assets/angel.png")));
+        builder.setHitbox(new Rectangle(0, 0, 16, 16));
         builder.setPontosVida(5);
         builder.setPontosDano(1);
         builder.setPontosMagia(0);
