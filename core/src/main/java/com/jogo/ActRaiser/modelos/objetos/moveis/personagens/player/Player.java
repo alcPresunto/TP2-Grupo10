@@ -1,8 +1,11 @@
 package com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.jogo.ActRaiser.Director;
 import com.jogo.ActRaiser.modelos.objetos.moveis.Projetil;
@@ -15,6 +18,7 @@ public class Player extends Personagem {
     private float direcaoY = 1;
     private float tempoEntreTiros = 0.5f;
     private float timerTiro = 0f;
+    private ArrayList<Projetil> projeteis = new ArrayList<Projetil>();
 
     public Player(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade,
             int pontosVida, int pontosMagia, int pontosDano) {
@@ -70,11 +74,28 @@ public class Player extends Personagem {
     }
 
     private void atirar() {
-        ProjetilBuilder projetilBuilder = new ProjetilBuilder();
         Director director = new Director();
+        ProjetilBuilder projetilBuilder = new ProjetilBuilder();
         director.constructorProjetil(projetilBuilder, this);
-        Projetil projetil = projetilBuilder.buildProjetil();
 
+        Projetil novoProjetil = projetilBuilder.buildProjetil();
+        projeteis.add(novoProjetil);
+    }
+
+    public void atualizarProjeteis(SpriteBatch batch) {
+        ArrayList<Projetil> projeteisRemovidos = new ArrayList<Projetil>();
+
+        for (Projetil projetil : projeteis) {
+            projetil.mover();
+            if (projetil.estaAtivo()) {
+                projetil.desenha(batch);
+                System.out.println("HEHEHEHE");
+            } else {
+                projeteisRemovidos.add(projetil);
+            }
+        }
+
+        projeteis.removeAll(projeteisRemovidos);
     }
 
     // Getters
@@ -92,6 +113,10 @@ public class Player extends Personagem {
 
     public float getCentroY() {
         return posicaoY + hitbox.getHeight() / 2;
+    }
+
+    public ArrayList<Projetil> getProjeteis() {
+        return projeteis;
     }
 
 }

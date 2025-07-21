@@ -2,7 +2,6 @@ package com.jogo.ActRaiser.modelos.objetos.moveis;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Projetil extends Movel {
@@ -22,7 +21,7 @@ public class Projetil extends Movel {
         posicaoY += direcaoY * velocidade * Gdx.graphics.getDeltaTime();
         hitbox.setPosition(posicaoX, posicaoY);
 
-        if (posicaoX < -50 || posicaoX > 900 || posicaoY < -50 || posicaoY > 800) {
+        if (posicaoX < -50 || posicaoX > Gdx.graphics.getWidth() || posicaoY < -50 || posicaoY > Gdx.graphics.getHeight()) {
             ativo = false;
         }
     }
@@ -33,15 +32,5 @@ public class Projetil extends Movel {
 
     public void destruir() {
         ativo = false;
-    }
-
-    @Override
-    public void desenha(SpriteBatch batch) {
-        batch.draw(texture, posicaoX, posicaoY);
-    }
-
-    @Override
-    public void atualiza() {
-        mover();
     }
 }
