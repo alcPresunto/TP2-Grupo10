@@ -1,7 +1,6 @@
 package com.jogo.ActRaiser.modelos.mapas;
 
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class MapaPrimeiraFase extends MapaBase {

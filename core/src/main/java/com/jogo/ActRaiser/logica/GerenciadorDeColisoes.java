@@ -19,6 +19,7 @@ public class GerenciadorDeColisoes {
         if (objeto instanceof Inimigo) {
             processarDanoDoInimigoNoJogador(jogador, (Inimigo) objeto);
             aplicarEmpurraoEntreJogadorEObjeto(jogador, objeto);
+            ((Inimigo)objeto).morrer();
         }
     }
 
@@ -30,6 +31,7 @@ public class GerenciadorDeColisoes {
 
                 if (inimigo.estaMorto()) {
                     inimigo.morrer();
+                    jogador.adicionaPontosMagia(inimigo.getPontosMagia());
                     // jogador.adicionarPontuacao(100); // se quiser
                 }
             }
