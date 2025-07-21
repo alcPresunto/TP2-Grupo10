@@ -21,4 +21,9 @@ public abstract class Movel extends ObjetoDoJogo {
     }
 
     public abstract void mover();
+
+    @Override
+    public void atualiza(){
+        mover();
+    }
 }

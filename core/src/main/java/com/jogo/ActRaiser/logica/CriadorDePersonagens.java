@@ -8,6 +8,9 @@ public class CriadorDePersonagens {
 
     private final Director director = new Director();
 
+    public CriadorDePersonagens() {
+    }
+
     public Player criarPlayer() {
         PlayerBuilder playerBuilder = new PlayerBuilder();
         director.constructorPlayer(playerBuilder);

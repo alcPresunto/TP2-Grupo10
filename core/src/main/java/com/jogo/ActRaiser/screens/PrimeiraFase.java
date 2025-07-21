@@ -8,15 +8,17 @@ import com.jogo.ActRaiser.GameRunner;
 import com.jogo.ActRaiser.modelos.mapas.MapaPrimeiraFase;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos.Morcego;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
-import com.jogo.ActRaiser.logica.ControladorDeMoveis;
+import com.jogo.ActRaiser.logica.CriadorDePersonagens;
+import com.jogo.ActRaiser.logica.GerenciadorDeColisoes;
 
 public class PrimeiraFase implements Screen {
     private final GameRunner gameRunner;
     private MapaPrimeiraFase mapaPrimeiraFase;
-    private Player player;
-    private Morcego morcego;
     private OrthographicCamera camera;
-    private ControladorDeMoveis controladorDeMoveis;
+    private CriadorDePersonagens criadorDePersonagens;
+    private GerenciadorDeColisoes gerenciadorDeColisoes;
+    private Morcego morcego;
+    private Player player;
 
     public PrimeiraFase(GameRunner gameRunner) {
         this.gameRunner = gameRunner;
@@ -24,10 +26,12 @@ public class PrimeiraFase implements Screen {
 
     @Override
     public void show() {
-        controladorDeMoveis = new ControladorDeMoveis();
         mapaPrimeiraFase = new MapaPrimeiraFase();
-        player = controladorDeMoveis.criaPlayer();
-        morcego = controladorDeMoveis.criaMorcego(player);
+        criadorDePersonagens = new CriadorDePersonagens();
+        gerenciadorDeColisoes = new GerenciadorDeColisoes();
+
+        player = criadorDePersonagens.criarPlayer();
+        morcego = criadorDePersonagens.criarMorcego(player);
 
         camera = new OrthographicCamera();
         // Zoom de 2x: diminui a viewport pela metade
@@ -49,15 +53,15 @@ public class PrimeiraFase implements Screen {
 
         // Renderiza o mapa com a câmera atualizada
         mapaPrimeiraFase.render(camera);
-        player.mover();
-        morcego.mover();
-        controladorDeMoveis.colisaoPlayer(player, morcego);
+        player.atualiza();
+        morcego.atualiza();
+        gerenciadorDeColisoes.verificarColisao(player, morcego);
 
         // Garante que o batch use a matriz de projeção da câmera
         gameRunner.batch.setProjectionMatrix(camera.combined);
         gameRunner.batch.begin();
-        gameRunner.batch.draw(player.getTexture(), player.getPosicaoX(), player.getPosicaoY());
-        gameRunner.batch.draw(morcego.getTexture(), morcego.getPosicaoX(), morcego.getPosicaoY());
+        player.desenha(gameRunner.batch);
+        morcego.desenha(gameRunner.batch);
         gameRunner.batch.end();
     }
 

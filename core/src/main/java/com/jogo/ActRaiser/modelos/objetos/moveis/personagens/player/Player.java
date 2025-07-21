@@ -3,7 +3,6 @@ package com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.jogo.ActRaiser.Director;
 import com.jogo.ActRaiser.modelos.objetos.moveis.Projetil;
@@ -95,13 +94,4 @@ public class Player extends Personagem {
         return posicaoY + hitbox.getHeight() / 2;
     }
 
-    @Override
-    public void desenha(SpriteBatch batch) {
-        batch.draw(texture, posicaoX, posicaoY);
-    }
-
-    @Override
-    public void atualiza() {
-        mover();
-    }
 }

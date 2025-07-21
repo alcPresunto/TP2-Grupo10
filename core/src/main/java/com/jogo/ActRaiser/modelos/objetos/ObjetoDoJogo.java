@@ -18,7 +18,9 @@ public abstract class ObjetoDoJogo {
         this.hitbox.y = posicaoY;
     }
 
-    public abstract void desenha(SpriteBatch batch);
+    public void desenha(SpriteBatch batch){
+        batch.draw(texture, posicaoX, posicaoY);
+    }
     public abstract void atualiza();
 
     // Getters
