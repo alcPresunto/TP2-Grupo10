@@ -85,7 +85,6 @@ public class Player extends Personagem {
         float frameWidth = frame.getRegionWidth();
         float frameHeight = frame.getRegionHeight();
 
-        // Usa a mesma posição usada no batch.draw()
         float frameX = posicaoX;
         float frameY = posicaoY;
 
@@ -104,22 +103,22 @@ public class Player extends Personagem {
         projeteis.add(novoProjetil);
     }
 
-    public void atualizarProjeteis(SpriteBatch batch) {
-        ArrayList<Projetil> projeteisRemovidos = new ArrayList<Projetil>();
-
-        for (Projetil projetil : projeteis) {
-            projetil.mover();
-            if (projetil.estaAtivo()) {
-                projetil.desenha(batch);
-            } else {
-                projeteisRemovidos.add(projetil);
+    public void atualizarProjeteis() {
+        for (int i = projeteis.size() - 1; i >= 0; i--) {
+            Projetil p = projeteis.get(i);
+            p.mover();
+            if (!p.estaAtivo()) {
+                projeteis.remove(i);
             }
         }
-
-        projeteis.removeAll(projeteisRemovidos);
     }
 
-    // Getters
+    public void desenharProjeteis(SpriteBatch batch) {
+        for (Projetil p : projeteis) {
+            p.desenha(batch);
+        }
+    }
+
     public float getDirecaoX() {
         return direcaoX;
     }

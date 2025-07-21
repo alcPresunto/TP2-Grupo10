@@ -10,7 +10,7 @@ public class Director {
     public void constructorPlayer(ObjetosBuilder builder) {
         builder.setPosicaoX(100);
         builder.setPosicaoY(200);
-        builder.setVelocidade(175);
+        builder.setVelocidade(150);
         builder.setTexture(new Texture(Gdx.files.internal("assets/angel.png")));
         builder.setHitbox(new Rectangle(0, 0, 20, 20));
         builder.setPontosVida(5);
@@ -34,7 +34,7 @@ public class Director {
     public void constructorMorcego(ObjetosBuilder builder, Player player) {
         builder.setPosicaoX(300);
         builder.setPosicaoY(50);
-        builder.setVelocidade(125);
+        builder.setVelocidade(80);
         builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
         builder.setHitbox(new Rectangle(300, 50, 32, 32));
         builder.setPlayer(player);
@@ -43,7 +43,7 @@ public class Director {
     public void constructorDragao(ObjetosBuilder builder, Player player) {
         builder.setPosicaoX(0);
         builder.setPosicaoY(0);
-        builder.setVelocidade(100);
+        builder.setVelocidade(50);
         builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
         builder.setHitbox(new Rectangle(0, 0, 32, 32));
         builder.setPlayer(player);
@@ -52,7 +52,7 @@ public class Director {
     public void constructorDiabinho(ObjetosBuilder builder, Player player) {
         builder.setPosicaoX(0);
         builder.setPosicaoY(0);
-        builder.setVelocidade(0);
+        builder.setVelocidade(65);
         builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
         builder.setHitbox(new Rectangle(0, 0, 0, 0));
         builder.setPlayer(player);

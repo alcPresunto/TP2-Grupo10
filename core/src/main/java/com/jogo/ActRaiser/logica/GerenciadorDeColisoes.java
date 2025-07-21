@@ -2,47 +2,74 @@ package com.jogo.ActRaiser.logica;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.jogo.ActRaiser.modelos.objetos.ObjetoDoJogo;
+import com.jogo.ActRaiser.modelos.objetos.moveis.Projetil;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos.Inimigo;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
 
 public class GerenciadorDeColisoes {
 
-    public void verificarColisao(Player player, ObjetoDoJogo objeto) {
-        if (player == objeto || !player.getHitbox().overlaps(objeto.getHitbox()))
+    public void verificarColisaoJogadorComObjeto(Player jogador, ObjetoDoJogo objeto) {
+        if (jogador == objeto) {
             return;
+        }
+        if (!jogador.getHitbox().overlaps(objeto.getHitbox())) {
+            return;
+        }
 
         if (objeto instanceof Inimigo) {
-            Inimigo inimigo = (Inimigo) objeto;
-            player.removePontosVida(inimigo.getPontosDano());
-            resolverEmpurrao(player, objeto);
+            processarDanoDoInimigoNoJogador(jogador, (Inimigo) objeto);
+            aplicarEmpurraoEntreJogadorEObjeto(jogador, objeto);
         }
     }
 
-    private void resolverEmpurrao(Player player, ObjetoDoJogo objeto) {
-        Rectangle playerHitbox = player.getHitbox();
-        Rectangle objetoHitbox = objeto.getHitbox();
-        float overlapX = calcularSobreposicaoEixoX(playerHitbox, objetoHitbox);
-        float overlapY = calcularSobreposicaoEixoY(playerHitbox, objetoHitbox);
+    public void verificarColisaoProjetilComInimigo(Player jogador, Inimigo inimigo) {
+        for (Projetil projetil : jogador.getProjeteis()) {
+            if (projetil.estaAtivo() && projetil.getHitbox().overlaps(inimigo.getHitbox())) {
+                aplicarDanoDoProjetilNoInimigo(inimigo, jogador.getPontosDano());
+                desativarProjetil(projetil);
+                // Aqui poderia chamar um método para efeitos sonoros ou visuais
+            }
+        }
+    }
 
-        if (overlapX < overlapY) {
-            float direcaoX = playerHitbox.x < objetoHitbox.x ? -overlapX : overlapX;
-            player.setPosicaoX(player.getPosicaoX() + direcaoX);
+    private void processarDanoDoInimigoNoJogador(Player jogador, Inimigo inimigo) {
+        int dano = inimigo.getPontosDano();
+        jogador.removePontosVida(dano);
+    }
+
+    private void aplicarDanoDoProjetilNoInimigo(Inimigo inimigo, int dano) {
+        inimigo.removePontosVida(dano);
+    }
+
+    private void desativarProjetil(Projetil projetil) {
+        projetil.destruir();
+    }
+
+    private void aplicarEmpurraoEntreJogadorEObjeto(Player jogador, ObjetoDoJogo objeto) {
+        Rectangle hitboxJogador = jogador.getHitbox();
+        Rectangle hitboxObjeto = objeto.getHitbox();
+
+        float sobreposicaoX = calcularSobreposicaoEixoX(hitboxJogador, hitboxObjeto);
+        float sobreposicaoY = calcularSobreposicaoEixoY(hitboxJogador, hitboxObjeto);
+
+        if (sobreposicaoX < sobreposicaoY) {
+            float direcaoX = hitboxJogador.x < hitboxObjeto.x ? -sobreposicaoX : sobreposicaoX;
+            jogador.setPosicaoX(jogador.getPosicaoX() + direcaoX);
         } else {
-            float direcaoY = playerHitbox.y < objetoHitbox.y ? -overlapY : overlapY;
-            player.setPosicaoY(player.getPosicaoY() + direcaoY);
+            float direcaoY = hitboxJogador.y < hitboxObjeto.y ? -sobreposicaoY : sobreposicaoY;
+            jogador.setPosicaoY(jogador.getPosicaoY() + direcaoY);
         }
     }
 
     private float calcularSobreposicaoEixoX(Rectangle hitboxA, Rectangle hitboxB) {
-        return Math.min(
-                hitboxA.x + hitboxA.width - hitboxB.x,
-                hitboxB.x + hitboxB.width - hitboxA.x);
+        float sobreposicaoA = hitboxA.x + hitboxA.width - hitboxB.x;
+        float sobreposicaoB = hitboxB.x + hitboxB.width - hitboxA.x;
+        return Math.min(sobreposicaoA, sobreposicaoB);
     }
 
     private float calcularSobreposicaoEixoY(Rectangle hitboxA, Rectangle hitboxB) {
-        return Math.min(
-                hitboxA.y + hitboxA.height - hitboxB.y,
-                hitboxB.y + hitboxB.height - hitboxA.y);
+        float sobreposicaoA = hitboxA.y + hitboxA.height - hitboxB.y;
+        float sobreposicaoB = hitboxB.y + hitboxB.height - hitboxA.y;
+        return Math.min(sobreposicaoA, sobreposicaoB);
     }
-
 }

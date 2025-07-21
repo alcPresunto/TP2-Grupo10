@@ -25,7 +25,11 @@ public class ControladorDeMoveis {
         return criadorDePersonagens.criarDiabinho(player);
     }
 
-    public void verificarColisao(Player player, ObjetoDoJogo objeto) {
-        gerenciadorDeColisoes.verificarColisao(player, objeto);
+    public void verificarColisaoJogadorComObjeto(Player jogador, ObjetoDoJogo objeto) {
+        gerenciadorDeColisoes.verificarColisaoJogadorComObjeto(jogador, objeto);
+    }
+
+    public void verificarColisaoProjetilComInimigo(Player jogador, Inimigo inimigo) {
+        gerenciadorDeColisoes.verificarColisaoProjetilComInimigo(jogador, inimigo);
     }
 }
