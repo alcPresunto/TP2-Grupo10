@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.jogo.ActRaiser.GameRunner;
+import com.jogo.ActRaiser.screens.fases.PrimeiraFase;
 
 public class StartMenu implements Screen {
     private final GameRunner gameRunner;
