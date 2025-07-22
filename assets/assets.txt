@@ -1,0 +1,13 @@
+Mapa1.tmx
+Mapa2.tmx
+angel.png
+atributes.png
+botaoJogar.png
+botaoJogarHover.png
+coracao.png
+enemies.png
+libgdx.png
+magia.png
+projetil.png
+village.png
+villagers.png
