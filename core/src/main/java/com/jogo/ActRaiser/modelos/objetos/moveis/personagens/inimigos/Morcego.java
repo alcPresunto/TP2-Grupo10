@@ -7,10 +7,10 @@ import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
 
 public class Morcego extends Inimigo {
 
-    public Morcego(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int vida,
-            int magia, int dano,
-            Player player, AnimacaoGenerica animacao) {
-        super(posicaoX, posicaoY, texture, hitbox, velocidade, vida, magia, dano, player, animacao);
+    public Morcego(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int pontosVida,
+            int pontosMagia, int pontosDano, int pontuacao, Player player, AnimacaoGenerica animacao) {
+        super(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, pontuacao, player,
+                animacao);
     }
 
 }

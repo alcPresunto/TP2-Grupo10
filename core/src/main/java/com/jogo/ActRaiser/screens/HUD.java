@@ -1,6 +1,7 @@
 package com.jogo.ActRaiser.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,6 +18,7 @@ public class HUD {
     public HUD() {
         fonte = new BitmapFont();
         fonte.getData().setScale(1.2f);
+        fonte.setColor(Color.YELLOW);
 
         coracao = new Texture(Gdx.files.internal("coracao.png"));
         magiaIcone = new Texture(Gdx.files.internal("magia.png"));

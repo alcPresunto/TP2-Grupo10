@@ -8,7 +8,7 @@ import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
 
 public class MorcegoBuilder implements ObjetosBuilder {
     protected float posicaoX, posicaoY, velocidade;
-    protected int pontosVida, pontosMagia, pontosDano;
+    protected int pontosVida, pontosMagia, pontosDano, pontuacao;
     protected Texture texture;
     protected Rectangle hitbox;
     protected Player player;
@@ -44,6 +44,11 @@ public class MorcegoBuilder implements ObjetosBuilder {
     }
 
     @Override
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+
+    @Override
     public void setTexture(Texture texture) {
         this.texture = texture;
     }
@@ -59,8 +64,8 @@ public class MorcegoBuilder implements ObjetosBuilder {
     }
 
     public Morcego buildMorcego() {
-        return new Morcego(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, player,
-                new AnimacaoInimigo(texture, 5, 4, 3, 2, 0.1f));
+        return new Morcego(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano,
+                pontuacao, player, new AnimacaoInimigo(texture, 5, 4, 3, 2, 0.1f));
     }
 
     @Override

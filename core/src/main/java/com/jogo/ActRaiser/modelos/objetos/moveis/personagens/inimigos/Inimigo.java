@@ -13,9 +13,9 @@ public class Inimigo extends Personagem {
     protected Player player;
     protected AnimacaoGenerica animacao;
 
-    public Inimigo(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int vida,
-            int magia, int dano, Player player, AnimacaoGenerica animacao) {
-        super(posicaoX, posicaoY, texture, hitbox, velocidade, vida, magia, dano);
+    public Inimigo(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int pontosVida,
+            int pontosMagia, int pontosDano, int pontuacao, Player player, AnimacaoGenerica animacao) {
+        super(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, pontuacao);
         this.player = player;
         this.animacao = animacao;
     }
@@ -61,7 +61,6 @@ public class Inimigo extends Personagem {
 
     public void morrer() {
         setAtivo(false);
-        System.out.println("Inimigo morreu!");
         // TODO: Som, animação de explosão etc
     }
 }

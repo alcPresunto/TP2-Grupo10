@@ -15,18 +15,45 @@ import com.jogo.ActRaiser.modelos.objetos.moveis.ProjetilBuilder;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.Personagem;
 
 public class Player extends Personagem {
+
     private AnimacaoPlayer animacaoPlayer;
 
-    private float direcaoX = 0;
-    private float direcaoY = 1;
-    private float tempoEntreTiros = 0.5f;
-    private float timerTiro = 0f;
-    private ArrayList<Projetil> projeteis = new ArrayList<Projetil>();
+    private float direcaoX, direcaoY, tempoEntreTiros, timerTiro;
+    private ArrayList<Projetil> projeteis;
 
-    public Player(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade,
-            int pontosVida, int pontosMagia, int pontosDano) {
-        super(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano);
+    public Player(float posicaoX, float posicaoY, Texture texture, Rectangle hitbox, float velocidade, int pontosVida,
+            int pontosMagia, int pontosDano, int pontuacao) {
+        super(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, pontuacao);
         this.animacaoPlayer = new AnimacaoPlayer(texture);
+        this.direcaoX = 0;
+        this.direcaoY = 1;
+        this.tempoEntreTiros = 0.5f;
+        this.timerTiro = 0f;
+        projeteis = new ArrayList<Projetil>();
+    }
+
+    public float getDirecaoX() {
+        return direcaoX;
+    }
+
+    public float getDirecaoY() {
+        return direcaoY;
+    }
+
+    public float getCentroX() {
+        return posicaoX + hitbox.getWidth() / 2;
+    }
+
+    public float getCentroY() {
+        return posicaoY + hitbox.getHeight() / 2;
+    }
+
+    public ArrayList<Projetil> getProjeteis() {
+        return projeteis;
+    }
+
+    public TextureRegion getFrameAtual() {
+        return animacaoPlayer.getFrame();
     }
 
     @Override
@@ -117,30 +144,6 @@ public class Player extends Personagem {
         for (Projetil p : projeteis) {
             p.desenha(batch);
         }
-    }
-
-    public float getDirecaoX() {
-        return direcaoX;
-    }
-
-    public float getDirecaoY() {
-        return direcaoY;
-    }
-
-    public float getCentroX() {
-        return posicaoX + hitbox.getWidth() / 2;
-    }
-
-    public float getCentroY() {
-        return posicaoY + hitbox.getHeight() / 2;
-    }
-
-    public ArrayList<Projetil> getProjeteis() {
-        return projeteis;
-    }
-
-    public TextureRegion getFrameAtual() {
-        return animacaoPlayer.getFrame();
     }
 
 }

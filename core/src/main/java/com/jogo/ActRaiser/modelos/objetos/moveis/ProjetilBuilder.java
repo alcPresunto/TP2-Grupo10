@@ -61,4 +61,8 @@ public class ProjetilBuilder implements ObjetosBuilder {
     @Override
     public void setPlayer(Player player) {
     }
+
+    @Override
+    public void setPontuacao(int pontuacao) {
+    }
 }

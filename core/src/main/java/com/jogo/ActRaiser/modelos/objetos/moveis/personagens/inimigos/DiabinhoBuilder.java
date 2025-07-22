@@ -8,7 +8,7 @@ import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
 
 public class DiabinhoBuilder implements ObjetosBuilder {
     protected float posicaoX, posicaoY, velocidade;
-    protected int pontosVida, pontosMagia, pontosDano;
+    protected int pontosVida, pontosMagia, pontosDano, pontuacao;
     protected Texture texture;
     protected Rectangle hitbox;
     protected Player player;
@@ -44,6 +44,11 @@ public class DiabinhoBuilder implements ObjetosBuilder {
     }
 
     @Override
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+
+    @Override
     public void setTexture(Texture texture) {
         this.texture = texture;
     }
@@ -60,7 +65,7 @@ public class DiabinhoBuilder implements ObjetosBuilder {
 
     public Diabinho buildDiabinho() {
         return new Diabinho(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano,
-                player, new AnimacaoInimigo(texture, 10, 4, 0, 2, 0.1f));
+                pontuacao, player, new AnimacaoInimigo(texture, 10, 4, 0, 2, 0.1f));
     }
 
     @Override

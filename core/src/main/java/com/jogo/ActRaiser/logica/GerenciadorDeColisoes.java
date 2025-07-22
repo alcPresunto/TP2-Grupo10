@@ -32,7 +32,7 @@ public class GerenciadorDeColisoes {
                 if (inimigo.estaMorto()) {
                     inimigo.morrer();
                     jogador.adicionaPontosMagia(inimigo.getPontosMagia());
-                    // jogador.adicionarPontuacao(100); // se quiser
+                    jogador.adicionaPontuacao(inimigo.getPontuacao());
                 }
             }
         }

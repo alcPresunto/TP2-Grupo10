@@ -6,7 +6,7 @@ import com.jogo.ActRaiser.interfaces.ObjetosBuilder;
 
 public class PlayerBuilder implements ObjetosBuilder {
     protected float posicaoX, posicaoY, velocidade;
-    protected int pontosVida, pontosMagia, pontosDano;
+    protected int pontosVida, pontosMagia, pontosDano, pontuacao;
     protected Texture texture;
     protected Rectangle hitbox;
 
@@ -41,6 +41,11 @@ public class PlayerBuilder implements ObjetosBuilder {
     }
 
     @Override
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+
+    @Override
     public void setTexture(Texture texture) {
         this.texture = texture;
     }
@@ -51,7 +56,7 @@ public class PlayerBuilder implements ObjetosBuilder {
     }
 
     public Player buildPlayer() {
-        return new Player(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano);
+        return new Player(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, pontuacao);
     }
 
     @Override
