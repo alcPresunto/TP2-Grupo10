@@ -68,6 +68,7 @@ public class Player extends Personagem {
             atirar();
             timerTiro = 0;
         }
+        adquireVidaExtra();
     }
 
     @Override
@@ -143,6 +144,15 @@ public class Player extends Personagem {
     public void desenharProjeteis(SpriteBatch batch) {
         for (Projetil p : projeteis) {
             p.desenha(batch);
+        }
+    }
+
+    private void adquireVidaExtra() {
+        int custoVidaExtra = 250;
+
+        if (pontosMagia >= custoVidaExtra && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            removePontosMagia(custoVidaExtra);
+            adicionaPontosVida(1);
         }
     }
 

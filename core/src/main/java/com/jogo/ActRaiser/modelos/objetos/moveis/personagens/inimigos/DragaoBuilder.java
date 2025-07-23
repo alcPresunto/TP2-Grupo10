@@ -65,7 +65,7 @@ public class DragaoBuilder implements ObjetosBuilder {
 
     public Dragao buildDragao() {
         return new Dragao(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano,
-                pontuacao, player, new AnimacaoInimigo(texture, 7, 4, 1, 2, 0.1f));
+                pontuacao, player, new AnimacaoInimigo(texture, 7, 4, 1, 2, 0.2f));
     }
 
     @Override

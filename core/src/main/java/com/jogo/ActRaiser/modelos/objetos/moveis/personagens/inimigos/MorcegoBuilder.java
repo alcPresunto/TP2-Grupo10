@@ -65,7 +65,7 @@ public class MorcegoBuilder implements ObjetosBuilder {
 
     public Morcego buildMorcego() {
         return new Morcego(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano,
-                pontuacao, player, new AnimacaoInimigo(texture, 5, 4, 3, 2, 0.1f));
+                pontuacao, player, new AnimacaoInimigo(texture, 5, 4, 3, 2, 0.2f));
     }
 
     @Override

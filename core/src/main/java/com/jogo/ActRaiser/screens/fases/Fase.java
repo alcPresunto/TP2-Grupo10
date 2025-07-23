@@ -100,7 +100,7 @@ public abstract class Fase implements Screen {
     protected void inicializaBase() {
         mapa = criaMapa();
         camera = new OrthographicCamera();
-        hud = new HUD(gameRunner);
+        hud = new HUD(gameRunner, this);
         criadorDePersonagens = new CriadorDePersonagens();
         gerenciadorDeColisoes = new GerenciadorDeColisoes();
         personagens = new ArrayList<>();
@@ -126,7 +126,7 @@ public abstract class Fase implements Screen {
         }
     }
 
-    protected int getPontuacaoParaVencer() {
+    public int getPontuacaoParaVencer() {
         return pontuacaoParaVencer;
     }
 

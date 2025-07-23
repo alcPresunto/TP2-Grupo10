@@ -6,7 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.jogo.ActRaiser.GameRunner;
-import com.jogo.ActRaiser.screens.fases.PrimeiraFase;
+import com.jogo.ActRaiser.screens.StartMenu;
 
 public class TelaDerrota implements Screen {
 
@@ -49,7 +49,7 @@ public class TelaDerrota implements Screen {
 
     private void verificarEntrada() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            gameRunner.setScreen(new PrimeiraFase(gameRunner));
+            gameRunner.setScreen(new StartMenu(gameRunner));
         }
     }
 

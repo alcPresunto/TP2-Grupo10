@@ -65,7 +65,7 @@ public class DiabinhoBuilder implements ObjetosBuilder {
 
     public Diabinho buildDiabinho() {
         return new Diabinho(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano,
-                pontuacao, player, new AnimacaoInimigo(texture, 10, 4, 0, 2, 0.1f));
+                pontuacao, player, new AnimacaoInimigo(texture, 10, 4, 0, 4, 0.2f));
     }
 
     @Override

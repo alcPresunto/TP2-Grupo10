@@ -91,7 +91,8 @@ public class StartMenu implements Screen {
                 getMouseY() >= botaoY && getMouseY() <= botaoY + botaoHeight;
     }
 
-    private void escreve(){
-        gameRunner.font.draw(gameRunner.batch, "ActRaiser - Modo Cidade", Gdx.graphics.getWidth()/3f, Gdx.graphics.getHeight() - 50f);
+    private void escreve() {
+        gameRunner.font.draw(gameRunner.batch, "ActRaiser - Modo Cidade", Gdx.graphics.getWidth() / 3f,
+                Gdx.graphics.getHeight() - 50f);
     }
 }
