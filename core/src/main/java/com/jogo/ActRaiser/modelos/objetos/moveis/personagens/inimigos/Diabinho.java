@@ -12,5 +12,4 @@ public class Diabinho extends Inimigo {
         super(posicaoX, posicaoY, texture, hitbox, velocidade, pontosVida, pontosMagia, pontosDano, pontuacao, player,
                 animacao);
     }
-
 }

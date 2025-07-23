@@ -3,15 +3,16 @@ package com.jogo.ActRaiser.animacoes;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class AnimacaoPlayer extends AnimacaoGenerica {
+public class AnimacaoDiabinho extends AnimacaoGenerica {
 
-    public AnimacaoPlayer(Texture spriteSheet) {
-        super(spriteSheet, 8, 4, 0, 2, 0.2f);
+    public AnimacaoDiabinho(Texture spriteSheet, int colunas, int linhas, int linhaAnimacao, int quantidadeFrames,
+            float frameDuration) {
+        super(spriteSheet, colunas, linhas, linhaAnimacao, quantidadeFrames, frameDuration);
     }
 
     @Override
     protected TextureRegion[][] dividirSpriteSheet(Texture spriteSheet, int colunas, int linhas) {
-        int larguraFrame = (spriteSheet.getWidth() / colunas) - 5;
+        int larguraFrame = spriteSheet.getWidth() / colunas;
         int alturaFrame = spriteSheet.getHeight() / linhas;
         return TextureRegion.split(spriteSheet, larguraFrame, alturaFrame);
     }

@@ -10,17 +10,29 @@ public abstract class AnimacaoGenerica {
 
     public AnimacaoGenerica(Texture spriteSheet, int colunas, int linhas, int linhaAnimacao, int quantidadeFrames,
             float frameDuration) {
+
+        animacao = criarAnimacao(spriteSheet, colunas, linhas, linhaAnimacao, quantidadeFrames, frameDuration);
+    }
+
+    protected Animation<TextureRegion> criarAnimacao(Texture spriteSheet, int colunas, int linhas, int linhaAnimacao,
+            int quantidadeFrames, float frameDuration) {
+        TextureRegion[][] grid = dividirSpriteSheet(spriteSheet, colunas, linhas);
+        TextureRegion[] frames = extrairFrames(grid, linhaAnimacao, quantidadeFrames);
+        return new Animation<>(frameDuration, frames);
+    }
+
+    protected TextureRegion[][] dividirSpriteSheet(Texture spriteSheet, int colunas, int linhas) {
         int larguraFrame = spriteSheet.getWidth() / colunas;
         int alturaFrame = spriteSheet.getHeight() / linhas;
+        return TextureRegion.split(spriteSheet, larguraFrame, alturaFrame);
+    }
 
-        TextureRegion[][] grid = TextureRegion.split(spriteSheet, larguraFrame, alturaFrame);
+    protected TextureRegion[] extrairFrames(TextureRegion[][] grid, int linha, int quantidadeFrames) {
         TextureRegion[] frames = new TextureRegion[quantidadeFrames];
-
         for (int i = 0; i < quantidadeFrames; i++) {
-            frames[i] = grid[linhaAnimacao][i];
+            frames[i] = grid[linha][i];
         }
-
-        animacao = new Animation<>(frameDuration, frames);
+        return frames;
     }
 
     public void atualizar(float delta) {

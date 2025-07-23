@@ -5,7 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.jogo.ActRaiser.GameRunner;
-import com.jogo.ActRaiser.screens.fases.PrimeiraFase;
 
 public class StartMenu implements Screen {
 
@@ -33,7 +32,7 @@ public class StartMenu implements Screen {
 
         if (Gdx.input.justTouched() && isHovering()) {
             dispose();
-            gameRunner.setScreen(new PrimeiraFase(gameRunner));
+            gameRunner.setScreen(new TelaTutorial(gameRunner));
         }
 
         gameRunner.batch.begin();
@@ -74,7 +73,7 @@ public class StartMenu implements Screen {
     }
 
     private void limpaTela() {
-        Gdx.gl.glClearColor(0.27f, 0.48f, 0.62f, 1);
+        Gdx.gl.glClearColor(0.1f, 0.1f, 0.4f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 
