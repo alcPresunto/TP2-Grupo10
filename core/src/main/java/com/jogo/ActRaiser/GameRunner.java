@@ -4,18 +4,25 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.jogo.ActRaiser.screens.StartMenu;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class GameRunner extends Game {
     public SpriteBatch batch;
+    public FreeTypeFontGenerator fontGenerator;
+    public FreeTypeFontParameter fontParameter;
     public BitmapFont font;
     public OrthographicCamera cameraHUD;
 
     @Override
     public void create() {
         batch = new SpriteBatch();
-        font = new BitmapFont();
+        fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("assets/fontes/fonteJogo.ttf"));
+        fontParameter = new FreeTypeFontParameter();
+        fontParameter.size = 24;
+        font = fontGenerator.generateFont(fontParameter);
         cameraHUD = new OrthographicCamera();
         cameraHUD.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         this.setScreen(new StartMenu(this));
@@ -29,6 +36,7 @@ public class GameRunner extends Game {
     @Override
     public void dispose() {
         batch.dispose();
+        fontGenerator.dispose();
         font.dispose();
     }
 

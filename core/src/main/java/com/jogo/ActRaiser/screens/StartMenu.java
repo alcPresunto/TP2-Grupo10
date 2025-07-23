@@ -15,8 +15,8 @@ public class StartMenu implements Screen {
 
     public StartMenu(GameRunner gameRunner) {
         this.gameRunner = gameRunner;
-        botaoJogar = new Texture(Gdx.files.internal("assets/botaoJogar.png"));
-        botaoJogarHover = new Texture(Gdx.files.internal("assets/botaoJogarHover.png"));
+        botaoJogar = new Texture(Gdx.files.internal("assets/images/botaoJogar.png"));
+        botaoJogarHover = new Texture(Gdx.files.internal("assets/images/botaoJogarHover.png"));
         gameRunner.font.getData().setScale(1.5f);
 
         botaoWidth = botaoJogar.getWidth();

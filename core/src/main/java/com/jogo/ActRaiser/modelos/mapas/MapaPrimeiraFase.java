@@ -7,7 +7,7 @@ public class MapaPrimeiraFase extends MapaBase {
 
     @Override
     protected void carregarMapa() {
-        mapa = new TmxMapLoader().load("Mapa1.tmx");
+        mapa = new TmxMapLoader().load("assets/mapas/Mapa1.tmx");
     }
 
     @Override

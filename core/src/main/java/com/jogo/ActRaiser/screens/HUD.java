@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jogo.ActRaiser.GameRunner;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
 
 public class HUD {
@@ -15,13 +16,13 @@ public class HUD {
     private final float linhaAltura = 12f; // altura entre coração e magia
     private final float iconeTamanho = 30f;
 
-    public HUD() {
-        fonte = new BitmapFont();
+    public HUD(GameRunner gameRunner) {
+        fonte = gameRunner.font;
         fonte.getData().setScale(1.2f);
         fonte.setColor(Color.YELLOW);
 
-        coracao = new Texture(Gdx.files.internal("coracao.png"));
-        magiaIcone = new Texture(Gdx.files.internal("magia.png"));
+        coracao = new Texture(Gdx.files.internal("assets/images/coracao.png"));
+        magiaIcone = new Texture(Gdx.files.internal("assets/images/magia.png"));
     }
 
     public void desenhar(SpriteBatch batch, Player player) {

@@ -13,7 +13,7 @@ public class Director {
         builder.setPosicaoX(100);
         builder.setPosicaoY(200);
         builder.setVelocidade(150);
-        builder.setTexture(new Texture(Gdx.files.internal("assets/angel.png")));
+        builder.setTexture(new Texture(Gdx.files.internal("assets/images/angel.png")));
         builder.setHitbox(new Rectangle(0, 0, 20, 20));
         builder.setPontosVida(10);
         builder.setPontosDano(1);
@@ -29,7 +29,7 @@ public class Director {
         objetosBuilder.setPosicaoY(posicaoInicialY);
         objetosBuilder.setDirecao(player.getDirecaoX(), player.getDirecaoY());
         objetosBuilder.setVelocidade(400);
-        objetosBuilder.setTexture(new Texture(Gdx.files.internal("assets/projetil.png")));
+        objetosBuilder.setTexture(new Texture(Gdx.files.internal("assets/images/projetil.png")));
         objetosBuilder.setHitbox(new Rectangle(posicaoInicialX, posicaoInicialY, 16, 16));
         objetosBuilder.setPlayer(player);
     }
@@ -38,7 +38,7 @@ public class Director {
         builder.setPosicaoX(criaPosicaoAleatoriaX());
         builder.setPosicaoY(criaPosicaoAleatoriaY());
         builder.setVelocidade(80);
-        builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
+        builder.setTexture(new Texture(Gdx.files.internal("assets/images/enemies.png")));
         builder.setHitbox(new Rectangle(300, 50, 32, 32));
         builder.setPlayer(player);
         builder.setPontosVida(2);
@@ -51,7 +51,7 @@ public class Director {
         builder.setPosicaoX(criaPosicaoAleatoriaX());
         builder.setPosicaoY(criaPosicaoAleatoriaY());
         builder.setVelocidade(50);
-        builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
+        builder.setTexture(new Texture(Gdx.files.internal("assets/images/enemies.png")));
         builder.setHitbox(new Rectangle(0, 0, 32, 32));
         builder.setPlayer(player);
         builder.setPontosVida(5);
@@ -64,8 +64,8 @@ public class Director {
         builder.setPosicaoX(criaPosicaoAleatoriaX());
         builder.setPosicaoY(criaPosicaoAleatoriaY());
         builder.setVelocidade(65);
-        builder.setTexture(new Texture(Gdx.files.internal("assets/enemies.png")));
-        builder.setHitbox(new Rectangle(0, 0, 0, 0));
+        builder.setTexture(new Texture(Gdx.files.internal("assets/images/enemies.png")));
+        builder.setHitbox(new Rectangle(0, 0, 32, 32));
         builder.setPlayer(player);
         builder.setPontosVida(3);
         builder.setPontosDano(3);
