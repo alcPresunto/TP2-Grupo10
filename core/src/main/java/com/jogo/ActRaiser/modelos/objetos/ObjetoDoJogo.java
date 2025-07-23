@@ -23,7 +23,6 @@ public abstract class ObjetoDoJogo {
     }
     public abstract void atualiza();
 
-    // Getters
     public float getPosicaoX() {
         return posicaoX;
     }
@@ -40,7 +39,6 @@ public abstract class ObjetoDoJogo {
         return hitbox;
     }
 
-    // Setters
     public void setPosicaoX(float posicaoX) {
         this.posicaoX = posicaoX;
     }

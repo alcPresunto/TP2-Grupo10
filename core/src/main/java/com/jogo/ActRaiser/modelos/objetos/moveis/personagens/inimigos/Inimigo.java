@@ -61,6 +61,5 @@ public class Inimigo extends Personagem {
 
     public void morrer() {
         setAtivo(false);
-        // TODO: Som, animação de explosão etc
     }
 }

@@ -41,10 +41,10 @@ public class Director {
         builder.setTexture(new Texture(Gdx.files.internal("assets/images/enemies.png")));
         builder.setHitbox(new Rectangle(300, 50, 32, 32));
         builder.setPlayer(player);
-        builder.setPontosVida(2);
+        builder.setPontosVida(1);
         builder.setPontosDano(1);
-        builder.setPontosMagia(20);
-        builder.setPontuacao(20);
+        builder.setPontosMagia(10);
+        builder.setPontuacao(5);
     }
 
     public void constructorDragao(ObjetosBuilder builder, Player player) {
@@ -54,10 +54,10 @@ public class Director {
         builder.setTexture(new Texture(Gdx.files.internal("assets/images/enemies.png")));
         builder.setHitbox(new Rectangle(0, 0, 32, 32));
         builder.setPlayer(player);
-        builder.setPontosVida(5);
+        builder.setPontosVida(4);
         builder.setPontosDano(2);
-        builder.setPontosMagia(50);
-        builder.setPontuacao(100);
+        builder.setPontosMagia(20);
+        builder.setPontuacao(10);
     }
 
     public void constructorDiabinho(ObjetosBuilder builder, Player player) {
@@ -69,8 +69,8 @@ public class Director {
         builder.setPlayer(player);
         builder.setPontosVida(3);
         builder.setPontosDano(3);
-        builder.setPontosMagia(30);
-        builder.setPontuacao(35);
+        builder.setPontosMagia(50);
+        builder.setPontuacao(30);
     }
 
     private float criaPosicaoAleatoriaX() {

@@ -1,7 +1,6 @@
 package com.jogo.ActRaiser.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,13 +12,12 @@ public class HUD {
     private Texture coracao;
     private Texture magiaIcone;
     private final float padding = 20f;
-    private final float linhaAltura = 12f; // altura entre coração e magia
+    private final float linhaAltura = 12f;
     private final float iconeTamanho = 30f;
 
     public HUD(GameRunner gameRunner) {
         fonte = gameRunner.font;
         fonte.getData().setScale(1.2f);
-        fonte.setColor(Color.YELLOW);
 
         coracao = new Texture(Gdx.files.internal("assets/images/coracao.png"));
         magiaIcone = new Texture(Gdx.files.internal("assets/images/magia.png"));
@@ -31,11 +29,9 @@ public class HUD {
 
         float yPos = Gdx.graphics.getHeight() - padding;
 
-        // Ícone de vida (coração) e número de vida
         batch.draw(coracao, padding, yPos - iconeTamanho + 10, iconeTamanho, iconeTamanho);
         fonte.draw(batch, String.valueOf(player.getPontosVida()), padding + iconeTamanho + 5, yPos);
 
-        // Ícone de magia abaixo do coração
         float magiaY = yPos - iconeTamanho - linhaAltura;
         batch.draw(magiaIcone, padding, magiaY - iconeTamanho + 10, iconeTamanho, iconeTamanho);
         fonte.draw(batch, String.valueOf(player.getPontosMagia()), padding + iconeTamanho + 5, magiaY);

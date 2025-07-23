@@ -5,17 +5,19 @@ import com.jogo.ActRaiser.modelos.mapas.MapaPrimeiraFase;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos.Dragao;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos.Morcego;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
+import com.jogo.ActRaiser.screens.intermediarias.PrimeiraFaseConcluida;
 
 public class PrimeiraFase extends Fase {
-    private static final int LIMITE_INIMIGOS = 10;
+
+    private static final int LIMITE_INIMIGOS = 7;
     private static final float TEMPO_PARA_SPAWN_MORCEGO = 5f;
-    private static final float TEMPO_PARA_SPAWN_DRAGAO = 7f;
+    private static final float TEMPO_PARA_SPAWN_DRAGAO = 10f;
 
     private float tempoAcumuladoParaMorcego = 0f;
     private float tempoAcumuladoParaDragao = 0f;
 
     public PrimeiraFase(GameRunner gameRunner) {
-        super(gameRunner);
+        super(gameRunner, 350);
     }
 
     @Override
@@ -52,5 +54,10 @@ public class PrimeiraFase extends Fase {
             personagens.add(novoDragao);
             tempoAcumuladoParaDragao = 0f;
         }
+    }
+
+    @Override
+    protected void fimDeJogo() {
+        gameRunner.setScreen(new PrimeiraFaseConcluida(gameRunner));
     }
 }

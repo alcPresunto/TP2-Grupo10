@@ -2,6 +2,7 @@ package com.jogo.ActRaiser;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -23,6 +24,7 @@ public class GameRunner extends Game {
         fontParameter = new FreeTypeFontParameter();
         fontParameter.size = 24;
         font = fontGenerator.generateFont(fontParameter);
+        font.setColor(Color.YELLOW);
         cameraHUD = new OrthographicCamera();
         cameraHUD.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         this.setScreen(new StartMenu(this));

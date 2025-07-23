@@ -1,4 +1,4 @@
-package com.jogo.ActRaiser.screens;
+package com.jogo.ActRaiser.screens.intermediarias;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -6,13 +6,14 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.jogo.ActRaiser.GameRunner;
-import com.jogo.ActRaiser.screens.fases.PrimeiraFase;
+import com.jogo.ActRaiser.screens.fases.SegundaFase;
 
-public class TelaDerrota implements Screen {
+public class PrimeiraFaseConcluida implements Screen {
+
     private final GameRunner gameRunner;
     private OrthographicCamera camera;
 
-    public TelaDerrota(GameRunner gameRunner) {
+    public PrimeiraFaseConcluida(GameRunner gameRunner) {
         this.gameRunner = gameRunner;
         this.camera = new OrthographicCamera();
         camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -20,27 +21,36 @@ public class TelaDerrota implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        camera.update();
-        gameRunner.batch.setProjectionMatrix(camera.combined);
-
-        float centerX = Gdx.graphics.getWidth() / 2f;
-        float centerY = Gdx.graphics.getHeight() / 2f;
-
-        gameRunner.batch.begin();
-        gameRunner.font.draw(gameRunner.batch, "Você morreu!", centerX - 50, centerY + 20);
-        gameRunner.font.draw(gameRunner.batch, "Pressione ENTER para tentar novamente", centerX - 180, centerY - 20);
-        gameRunner.batch.end();
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            gameRunner.setScreen(new PrimeiraFase(gameRunner));
-        }
+        limparTela();
+        atualizarCamera();
+        desenharMensagem();
+        verificarEntrada();
     }
 
-    @Override
-    public void dispose() {
+    private void limparTela() {
+        Gdx.gl.glClearColor(0.12f, 0.73f, 0.35f, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    }
+
+    private void atualizarCamera() {
+        camera.update();
+        gameRunner.batch.setProjectionMatrix(camera.combined);
+    }
+
+    private void desenharMensagem() {
+        float centroX = Gdx.graphics.getWidth() / 2f;
+        float centroY = Gdx.graphics.getHeight() / 2f;
+
+        gameRunner.batch.begin();
+        gameRunner.font.draw(gameRunner.batch, "Fase concluída!", centroX - 60, centroY + 20);
+        gameRunner.font.draw(gameRunner.batch, "Pressione ENTER para continuar", centroX - 150, centroY - 20);
+        gameRunner.batch.end();
+    }
+
+    private void verificarEntrada() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            gameRunner.setScreen(new SegundaFase(gameRunner));
+        }
     }
 
     @Override
@@ -61,5 +71,9 @@ public class TelaDerrota implements Screen {
 
     @Override
     public void hide() {
+    }
+
+    @Override
+    public void dispose() {
     }
 }

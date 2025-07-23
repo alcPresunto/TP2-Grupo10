@@ -6,19 +6,21 @@ import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos.Diabinho;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos.Dragao;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos.Morcego;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
+import com.jogo.ActRaiser.screens.intermediarias.TelaVitoria;
 
 public class SegundaFase extends Fase {
+
     private static final int LIMITE_INIMIGOS = 10;
     private static final float TEMPO_PARA_SPAWN_MORCEGO = 5f;
-    private static final float TEMPO_PARA_SPAWN_DRAGAO = 7f;
-    private static final float TEMPO_PARA_SPAWN_DIABINHO = 9f;
+    private static final float TEMPO_PARA_SPAWN_DIABINHO = 7f;
+    private static final float TEMPO_PARA_SPAWN_DRAGAO = 10f;
 
     private float tempoAcumuladoParaMorcego = 0f;
     private float tempoAcumuladoParaDragao = 0f;
     private float tempoAcumuladoParaDiabinho = 0f;
 
     public SegundaFase(GameRunner gameRunner) {
-        super(gameRunner);
+        super(gameRunner, 1100);
     }
 
     @Override
@@ -63,5 +65,10 @@ public class SegundaFase extends Fase {
             personagens.add(novoDiabinho);
             tempoAcumuladoParaDiabinho = 0f;
         }
+    }
+
+    @Override
+    protected void fimDeJogo() {
+        gameRunner.setScreen(new TelaVitoria(gameRunner));
     }
 }
