@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.jogo.ActRaiser.Director;
 import com.jogo.ActRaiser.animacoes.AnimacaoPlayer;
+import com.jogo.ActRaiser.logica.ControladorDeSons;
 import com.jogo.ActRaiser.modelos.objetos.moveis.Projetil;
 import com.jogo.ActRaiser.modelos.objetos.moveis.ProjetilBuilder;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.Personagem;
@@ -30,6 +32,7 @@ public class Player extends Personagem {
         this.tempoEntreTiros = 0.5f;
         this.timerTiro = 0f;
         projeteis = new ArrayList<Projetil>();
+
     }
 
     public float getDirecaoX() {
@@ -151,9 +154,26 @@ public class Player extends Personagem {
         int custoVidaExtra = 250;
 
         if (pontosMagia >= custoVidaExtra && Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            tocarSomVidaExtra();
             removePontosMagia(custoVidaExtra);
             adicionaPontosVida(1);
         }
     }
 
+    @Override
+    public void tocarSomDano() {
+        Sound som = ControladorDeSons.getDanoNoPlayerSound();
+        som.play(0.25f);
+    }
+
+    @Override
+    public void tocarSomMorte() {
+        Sound som = ControladorDeSons.getPlayerMorteSound();
+        som.play(0.25f);
+    }
+
+    private void tocarSomVidaExtra(){
+        Sound som = ControladorDeSons.getVidaExtraSound();
+        som.play(0.25f);
+    }
 }

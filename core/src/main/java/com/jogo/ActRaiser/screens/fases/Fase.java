@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.jogo.ActRaiser.GameRunner;
+import com.jogo.ActRaiser.logica.ControladorDeSons;
 import com.jogo.ActRaiser.logica.CriadorDePersonagens;
 import com.jogo.ActRaiser.logica.GerenciadorDeColisoes;
 import com.jogo.ActRaiser.modelos.mapas.MapaBase;
@@ -68,7 +70,8 @@ public abstract class Fase implements Screen {
             renderizaJogo(gameRunner.batch);
             renderizaHUD(gameRunner.batch);
         }
-        desenhaHitboxes();
+        tocaTrilhaSonora();
+        // desenhaHitboxes();
     }
 
     @Override
@@ -120,6 +123,7 @@ public abstract class Fase implements Screen {
         if (jogador == null)
             return;
         if (jogador.getPontosVida() <= 0) {
+            jogador.tocarSomMorte();
             gameRunner.setScreen(new TelaDerrota(gameRunner));
         } else if (jogador.getPontuacao() >= getPontuacaoParaVencer()) {
             fimDeJogo();
@@ -273,5 +277,12 @@ public abstract class Fase implements Screen {
         batch.begin();
         atualizaHUD(batch);
         batch.end();
+    }
+
+    protected void tocaTrilhaSonora() {
+        Music trilha = ControladorDeSons.getTrilhaSonoraMusic();
+        trilha.setVolume(0.10f);
+        trilha.setLooping(true);
+        trilha.play();
     }
 }

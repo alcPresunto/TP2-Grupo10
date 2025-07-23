@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.jogo.ActRaiser.logica.ControladorDeSons;
 import com.jogo.ActRaiser.screens.StartMenu;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
@@ -28,6 +29,9 @@ public class GameRunner extends Game {
         cameraHUD = new OrthographicCamera();
         cameraHUD.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         this.setScreen(new StartMenu(this));
+        ControladorDeSons.carregarSons();
+        ControladorDeSons.finalizarCarregamento();
+
     }
 
     @Override
@@ -40,6 +44,7 @@ public class GameRunner extends Game {
         batch.dispose();
         fontGenerator.dispose();
         font.dispose();
+        ControladorDeSons.dispose();
     }
 
     @Override

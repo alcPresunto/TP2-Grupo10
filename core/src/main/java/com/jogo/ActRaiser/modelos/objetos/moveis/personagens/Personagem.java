@@ -55,6 +55,7 @@ public abstract class Personagem extends Movel {
 
     public void removePontosVida(int pontosDano) {
         this.pontosVida -= pontosDano;
+        tocarSomDano();
     }
 
     public void adicionaPontosMagia(int pontosMagia) {
@@ -84,4 +85,8 @@ public abstract class Personagem extends Movel {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public abstract void tocarSomDano();
+
+    public abstract void tocarSomMorte();
 }

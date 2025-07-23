@@ -12,3 +12,11 @@ images/villagers.png
 mapas/Mapa1.tmx
 mapas/Mapa2.tmx
 mapas/village.png
+sounds/danoNoInimigo.wav
+sounds/danoNoPlayer.wav
+sounds/morteInimigo.wav
+sounds/playerMorte.mp3
+sounds/telaDerrota.wav
+sounds/telaVitoria.mp3
+sounds/trilhaSonora.mp3
+sounds/vidaExtra.mp3

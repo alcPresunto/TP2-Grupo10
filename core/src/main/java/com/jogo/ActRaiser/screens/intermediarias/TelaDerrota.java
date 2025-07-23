@@ -3,9 +3,11 @@ package com.jogo.ActRaiser.screens.intermediarias;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.jogo.ActRaiser.GameRunner;
+import com.jogo.ActRaiser.logica.ControladorDeSons;
 import com.jogo.ActRaiser.screens.StartMenu;
 
 public class TelaDerrota implements Screen {
@@ -25,6 +27,7 @@ public class TelaDerrota implements Screen {
         atualizarCamera();
         desenharMensagem();
         verificarEntrada();
+        tocarMusicaDerrota();
     }
 
     private void limparTela() {
@@ -75,5 +78,11 @@ public class TelaDerrota implements Screen {
 
     @Override
     public void dispose() {
+    }
+
+        private void tocarMusicaDerrota(){
+        Music musicaDerrota = ControladorDeSons.getTelaDerrotaMusic();
+        musicaDerrota.setVolume(0.25f);
+        musicaDerrota.play();
     }
 }

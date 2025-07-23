@@ -1,11 +1,13 @@
 package com.jogo.ActRaiser.modelos.objetos.moveis.personagens.inimigos;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.jogo.ActRaiser.animacoes.AnimacaoGenerica;
+import com.jogo.ActRaiser.logica.ControladorDeSons;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.Personagem;
 import com.jogo.ActRaiser.modelos.objetos.moveis.personagens.player.Player;
 
@@ -60,6 +62,20 @@ public class Inimigo extends Personagem {
     }
 
     public void morrer() {
+        tocarSomMorte();
         setAtivo(false);
     }
+
+    @Override
+    public void tocarSomDano() {
+        Sound som = ControladorDeSons.getDanoNoInimigoSound();
+        som.play(0.25f);
+    }
+
+    @Override
+    public void tocarSomMorte() {
+        Sound som = ControladorDeSons.getMorteInimigoSound();
+        som.play(0.25f);
+    }
+
 }

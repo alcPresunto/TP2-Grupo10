@@ -3,9 +3,11 @@ package com.jogo.ActRaiser.screens.intermediarias;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.jogo.ActRaiser.GameRunner;
+import com.jogo.ActRaiser.logica.ControladorDeSons;
 import com.jogo.ActRaiser.screens.StartMenu;
 
 public class TelaVitoria implements Screen {
@@ -29,6 +31,7 @@ public class TelaVitoria implements Screen {
         atualizarCamera();
         desenharMensagem();
         verificarEntrada();
+        tocarMusicaVitoria();
     }
 
     private void limparTela() {
@@ -79,5 +82,11 @@ public class TelaVitoria implements Screen {
 
     @Override
     public void dispose() {
+    }
+
+    private void tocarMusicaVitoria() {
+        Music musicaVitoria = ControladorDeSons.getTelaVitoriaMusic();
+        musicaVitoria.setVolume(0.25f);
+        musicaVitoria.play();
     }
 }
